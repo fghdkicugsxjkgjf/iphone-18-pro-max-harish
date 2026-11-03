@@ -1,0 +1,1662 @@
+<!--
+HOW TO EDIT
+1. TEXT: In the CONTENT object near the top of the script, edit the copy in hero, story,
+   colors, camera, display, island, chip, buy, specs, navigation, or footer.
+2. COLORS: Edit the hex value on each item in CONTENT.colors. The active phone recolors
+   automatically when its swatch is selected.
+3. PRICES: Edit CONTENT.storage. The 256GB price is supplied; other prices are clearly
+   marked TBC until you know them. Keep prices as display strings (for example, "$1,499").
+4. FONTS: Change --font-main in the :root CSS variables. This page uses system fonts only.
+5. ADD A PHONE COLOR: Add one object to CONTENT.colorsList with name, hex and finish.
+   Set frontImage to an existing image slot or an empty string to use the CSS phone render.
+   A custom image slot is optional; the color itself takes one line.
+6. SWAP IMAGES: Paste a direct image URL into the url field for the matching slot in
+   CONTENT.IMAGES, or press E on the page to use the live image editor. Add credit text
+   in credit. Empty or broken URLs use the built-in CSS phone / gradients instead.
+
+All product details are presented as a fan concept using only the facts supplied for this
+project. Anything not supplied is labelled TBC. No Apple artwork, logo, libraries or CDN
+assets are used.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="An unofficial iPhone 18 Pro Max fan concept product page.">
+  <title>iPhone 18 Pro Max — Built for the extraordinary</title>
+  <style>
+    /* ===== CSS VARIABLES: EDIT THESE FIRST ===== */
+    @property --device-color { syntax: "<color>"; inherits: true; initial-value: #292c32; }
+    @property --aperture-opening { syntax: "<percentage>"; inherits: true; initial-value: 24%; }
+    @property --brightness-glow { syntax: "<number>"; inherits: true; initial-value: .55; }
+    :root {
+      color-scheme: dark;
+      --font-main: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+      --color-ink: #f5f5f7;
+      --color-paper: #f5f5f2;
+      --color-muted: #a5a7ad;
+      --color-muted-dark: #686b72;
+      --color-night: #08090b;
+      --color-night-soft: #111318;
+      --color-panel: #191c22;
+      --color-line: rgba(255,255,255,.14);
+      --color-line-light: rgba(0,0,0,.12);
+      --color-accent: #a9c8ff;
+      --color-accent-strong: #6fa6ff;
+      --color-lime: #c9f2d2;
+      --color-danger: #ff8e8e;
+      --color-metal: #8a8d94;
+      --color-black-phone: #272a30;
+      --color-silver-phone: #d7dbe0;
+      --color-glacier-phone: #a5c5df;
+      --color-burgundy-phone: #602938;
+      --font-size-xs: .72rem;
+      --font-size-sm: .88rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.2rem;
+      --font-size-xl: clamp(1.5rem, 2.4vw, 2.25rem);
+      --font-size-display: clamp(3.35rem, 10vw, 9.5rem);
+      --font-size-section: clamp(2.7rem, 7vw, 6.6rem);
+      --space-1: .35rem;
+      --space-2: .65rem;
+      --space-3: 1rem;
+      --space-4: 1.5rem;
+      --space-5: 2rem;
+      --space-6: 3rem;
+      --space-7: 4.5rem;
+      --space-8: 6.5rem;
+      --space-9: 9rem;
+      --radius-sm: 12px;
+      --radius-md: 22px;
+      --radius-lg: 34px;
+      --radius-xl: 48px;
+      --radius-pill: 999px;
+      --content-width: 1220px;
+      --nav-height: 68px;
+      --phone-width: 265px;
+      --phone-height: 556px;
+      --phone-radius: 43px;
+      --ease-apple: cubic-bezier(.28,.11,.32,1);
+      --ease-spring: cubic-bezier(.2,1.35,.4,1);
+      --motion-fast: 260ms;
+      --motion-medium: 650ms;
+      --motion-slow: 1100ms;
+      --story-scroll-space: 300vh;
+      --grain-opacity: .055;
+      --shadow-soft: 0 35px 100px rgba(0,0,0,.34);
+      --shadow-phone: 0 65px 110px rgba(0,0,0,.5), 0 0 85px rgba(120,165,255,.17);
+      --section-pad: clamp(5rem, 11vw, 10rem);
+      --surface-light: #eceeec;
+      --surface-dark: #08090b;
+      --text-light: #14161a;
+      --text-dark: #f5f5f7;
+      --device-color: var(--color-black-phone);
+      --device-highlight: rgba(255,255,255,.72);
+      --pointer-x: 50%;
+      --pointer-y: 50%;
+      --brightness-glow: .55;
+      --aperture-opening: 24%;
+      --depth-blur: 8px;
+      --refresh-rate: 60;
+      --performance-fill: 0%;
+      --battery-fill: 0;
+    }
+
+    /* ===== GLOBAL ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-height) + 1rem); }
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background: var(--color-night);
+      color: var(--color-ink);
+      font-family: var(--font-main);
+      font-size: var(--font-size-base);
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    body::after {
+      position: fixed;
+      z-index: 20;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+      opacity: var(--grain-opacity);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    img { display: block; max-width: 100%; }
+    button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--color-accent-strong);
+      outline-offset: 4px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: var(--space-3);
+      left: var(--space-3);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-pill);
+      background: white;
+      color: black;
+      transform: translateY(-180%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .eyebrow {
+      margin: 0 0 var(--space-3);
+      color: var(--color-muted);
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+      letter-spacing: .18em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+    .section-title {
+      max-width: 1000px;
+      margin: 0;
+      font-size: var(--font-size-section);
+      font-weight: 650;
+      letter-spacing: -.075em;
+      line-height: .94;
+    }
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(105deg, #fff 5%, #c7d9f6 43%, #8b9db7 76%, #f4dce2 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+    .section-copy {
+      max-width: 620px;
+      margin: var(--space-4) 0 0;
+      color: var(--color-muted);
+      font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+      line-height: 1.55;
+    }
+    .content-width { width: min(var(--content-width), calc(100% - 2 * clamp(1.25rem, 6vw, 5rem))); margin-inline: auto; }
+    .section-pad { padding-block: var(--section-pad); }
+    .muted { color: var(--color-muted); }
+    .microcopy { color: var(--color-muted); font-size: var(--font-size-xs); line-height: 1.5; }
+    .pill-link, .primary-button, .quiet-button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: .8rem 1.25rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-pill);
+      font-size: var(--font-size-sm);
+      font-weight: 650;
+      transition: transform var(--motion-fast) var(--ease-apple), background var(--motion-fast) var(--ease-apple), border-color var(--motion-fast) var(--ease-apple);
+      cursor: pointer;
+    }
+    .pill-link:hover, .primary-button:hover, .quiet-button:hover { transform: translateY(-2px); }
+    .primary-button { background: #f5f5f7; color: #101115; }
+    .primary-button:hover { background: white; }
+    .quiet-button { border-color: var(--color-line); background: rgba(255,255,255,.035); color: var(--color-ink); }
+    .light-section .quiet-button { border-color: var(--color-line-light); color: var(--text-light); }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity var(--motion-slow) var(--ease-apple), transform var(--motion-slow) var(--ease-apple); }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    .image-shell { position: relative; overflow: hidden; isolation: isolate; }
+    .image-shell::before {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      content: "";
+      opacity: 0;
+      pointer-events: none;
+      background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,.16) 42%, transparent 62%);
+      transform: translateX(-110%);
+    }
+    .image-shell.is-pending::before { opacity: 1; animation: shimmer 1.45s linear infinite; }
+    .image-shell > img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 850ms var(--ease-apple); }
+    .image-shell.is-loaded > img { opacity: 1; }
+    .image-fallback { position: absolute; inset: 0; z-index: 0; display: block; opacity: 1; transition: opacity 850ms var(--ease-apple); }
+    .image-shell.is-loaded .image-fallback { opacity: 0; }
+    @keyframes shimmer { to { transform: translateX(110%); } }
+
+    /* ===== NAV ===== */
+    .site-nav {
+      position: fixed;
+      z-index: 50;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(8,9,11,.62);
+      backdrop-filter: blur(22px) saturate(160%);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+    }
+    .nav-inner { display: flex; height: 100%; align-items: center; justify-content: space-between; gap: var(--space-4); }
+    .brand-mark { display: inline-flex; align-items: center; gap: .65rem; font-size: .92rem; font-weight: 700; letter-spacing: -.03em; white-space: nowrap; }
+    .brand-dot { width: 9px; height: 9px; border-radius: 50%; background: linear-gradient(135deg, #fff, #83a7dc); box-shadow: 0 0 18px rgba(132,174,243,.7); }
+    .nav-links { display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.25rem); color: #c4c6cb; font-size: var(--font-size-xs); }
+    .nav-links a { transition: color var(--motion-fast) ease; }
+    .nav-links a:hover { color: white; }
+    .nav-buy { min-height: 34px; padding: .45rem 1rem; background: #f5f5f7; color: #111; font-size: var(--font-size-xs); opacity: 0; pointer-events: none; transform: translateY(-5px); transition: opacity var(--motion-fast) ease, transform var(--motion-fast) ease; }
+    .nav-buy.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: min(980px, 100svh);
+      align-items: center;
+      padding: calc(var(--nav-height) + 5rem) 0 5rem;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 75% 54%, rgba(72,91,127,.16), transparent 38%), var(--color-night);
+    }
+    .hero::before {
+      position: absolute;
+      inset: auto -10% -48% 15%;
+      height: 78%;
+      content: "";
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(91,131,196,.17), transparent 67%);
+      filter: blur(24px);
+    }
+    .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0,1fr) minmax(300px,.9fr); align-items: center; gap: clamp(1rem, 4vw, 4rem); }
+    .hero-copy { position: relative; z-index: 3; padding-block: var(--space-6); }
+    .hero h1 { max-width: 820px; margin: 0; font-size: var(--font-size-display); font-weight: 680; letter-spacing: -.09em; line-height: .83; }
+    .hero h1 span { display: block; }
+    .hero-subline { max-width: 510px; margin: var(--space-5) 0 0; color: #b9bdc6; font-size: clamp(1.1rem, 2vw, 1.45rem); line-height: 1.5; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); margin-top: var(--space-5); }
+    .hero-price { margin: var(--space-4) 0 0; color: #9da2ac; font-size: var(--font-size-sm); }
+    .hero-price strong { color: #f5f5f7; font-size: 1.1rem; }
+    .hero-visual { position: relative; display: grid; min-height: 650px; place-items: center; perspective: 1300px; }
+    .hero-glow { position: absolute; width: 90%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(135,170,225,.22), rgba(77,105,151,.07) 42%, transparent 70%); filter: blur(22px); }
+    .hero-phone-interaction { position: relative; z-index: 2; display: grid; width: min(100%, 390px); min-height: 620px; place-items: center; touch-action: pan-y; }
+    .hero-caption { position: absolute; right: 0; bottom: 3%; left: 0; z-index: 4; color: #9298a4; font-size: var(--font-size-xs); letter-spacing: .12em; text-align: center; text-transform: uppercase; }
+
+    /* ===== CSS 3D PHONE ===== */
+    .device {
+      position: relative;
+      width: var(--phone-width);
+      aspect-ratio: 1 / 2.1;
+      border: 1px solid rgba(255,255,255,.46);
+      border-radius: var(--phone-radius);
+      background: linear-gradient(112deg, rgba(255,255,255,.9), var(--device-color) 12%, #15171c 48%, var(--device-color) 82%, rgba(255,255,255,.64));
+      box-shadow: var(--shadow-phone), inset 0 0 0 2px rgba(255,255,255,.16), inset 0 0 13px rgba(0,0,0,.55);
+      transform-style: preserve-3d;
+      transition: --device-color var(--motion-medium) var(--ease-apple), box-shadow var(--motion-medium) var(--ease-apple);
+    }
+    .device::before {
+      position: absolute;
+      z-index: 5;
+      inset: 1px;
+      border: 1px solid rgba(255,255,255,.34);
+      border-radius: calc(var(--phone-radius) - 2px);
+      content: "";
+      pointer-events: none;
+      background: linear-gradient(112deg, rgba(255,255,255,.2), transparent 17%, transparent 79%, rgba(255,255,255,.14));
+    }
+    .device::after {
+      position: absolute;
+      z-index: 6;
+      inset: 0;
+      border-radius: inherit;
+      content: "";
+      pointer-events: none;
+      background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), rgba(255,255,255,.25), transparent 37%);
+      mix-blend-mode: screen;
+    }
+    .device-face { position: absolute; inset: 0; overflow: hidden; border-radius: inherit; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .face-front { transform: rotateY(0deg) translateZ(1px); background: linear-gradient(145deg, #e6e8eb, #343840 15%, #0c0d10 75%, #9a9da3); }
+    .face-back { transform: rotateY(180deg) translateZ(1px); background: linear-gradient(140deg, rgba(255,255,255,.7), var(--device-color) 17%, #24262b 60%, var(--device-color)); }
+    .screen {
+      position: absolute;
+      inset: 6px;
+      overflow: hidden;
+      border-radius: calc(var(--phone-radius) - 7px);
+      background: #11131b;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.16);
+    }
+    .wallpaper {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 55% 34%, rgba(220,232,255,.9), transparent 14%), radial-gradient(ellipse at 34% 48%, #53688d, transparent 35%), radial-gradient(ellipse at 75% 75%, #6a425b, transparent 33%), linear-gradient(155deg, #111927, #263d61 48%, #171321);
+    }
+    .wallpaper::before, .wallpaper::after { position: absolute; inset: -15%; border-radius: 43%; content: ""; filter: blur(22px); transform: rotate(-23deg); }
+    .wallpaper::before { background: linear-gradient(90deg, transparent 28%, rgba(157,190,238,.54), transparent 70%); animation: wallpaper-flow 10s ease-in-out infinite alternate; }
+    .wallpaper::after { background: linear-gradient(90deg, transparent, rgba(208,128,162,.28), transparent); transform: rotate(28deg) translateY(16%); animation: wallpaper-flow 13s ease-in-out infinite alternate-reverse; }
+    .wallpaper .image-shell { position: absolute; inset: 0; }
+    .wallpaper .image-shell > img { object-fit: cover; }
+    @keyframes wallpaper-flow { to { transform: rotate(12deg) translateX(12%) scale(1.18); } }
+    .status-time { position: absolute; top: 17%; left: 0; width: 100%; color: rgba(255,255,255,.86); font-size: clamp(2.7rem, 6vw, 4rem); font-weight: 300; letter-spacing: -.07em; text-align: center; text-shadow: 0 3px 20px rgba(0,0,0,.2); }
+    .status-date { position: absolute; top: 14%; left: 0; width: 100%; color: rgba(255,255,255,.8); font-size: .68rem; text-align: center; }
+    .island-cutout {
+      position: absolute;
+      z-index: 4;
+      top: 10px;
+      left: 50%;
+      width: 31%;
+      height: 19px;
+      border-radius: var(--radius-pill);
+      background: #020203;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 2px 8px rgba(0,0,0,.35);
+      transform: translateX(-50%);
+    }
+    .screen-reflection { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(120deg, rgba(255,255,255,.13), transparent 24%, transparent 72%, rgba(255,255,255,.08)); }
+    .home-indicator { position: absolute; bottom: 9px; left: 50%; width: 34%; height: 4px; border-radius: var(--radius-pill); background: rgba(255,255,255,.82); transform: translateX(-50%); }
+    .render-overlay { position: absolute; z-index: 3; inset: -1%; pointer-events: none; }
+    .render-overlay .image-shell, .render-overlay .image-shell > img { width: 100%; height: 100%; object-fit: contain; }
+    .back-glass { position: absolute; inset: 5px; overflow: hidden; border: 1px solid rgba(255,255,255,.19); border-radius: calc(var(--phone-radius) - 5px); background: linear-gradient(150deg, rgba(255,255,255,.14), transparent 24%, rgba(0,0,0,.1)); }
+    .back-glass::after { position: absolute; inset: 0; content: ""; background: radial-gradient(circle at 50% 40%, rgba(255,255,255,.12), transparent 48%); }
+    .camera-plateau {
+      position: absolute;
+      top: 7%;
+      left: 7%;
+      width: 86%;
+      height: 23%;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 31px;
+      background: linear-gradient(145deg, rgba(255,255,255,.22), rgba(0,0,0,.2) 35%, rgba(255,255,255,.08));
+      box-shadow: inset 0 1px 2px rgba(255,255,255,.28), 0 9px 25px rgba(0,0,0,.24);
+    }
+    .lens-cluster { position: absolute; top: 11%; left: 10%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 7%; width: 72%; }
+    .lens {
+      position: relative;
+      aspect-ratio: 1;
+      border: 3px solid #525862;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 29%, #adc0d7 0 5%, #304d73 7% 14%, #101722 16% 31%, #020407 48%, #334154 62%, #080a0d 72%);
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.12), 0 2px 7px rgba(0,0,0,.62);
+    }
+    .lens::after { position: absolute; inset: 15%; border: 1px solid rgba(150,190,235,.24); border-radius: 50%; content: ""; }
+    .camera-flash { position: absolute; top: 18%; right: 11%; width: 10%; aspect-ratio: 1; border: 2px solid rgba(255,255,255,.25); border-radius: 50%; background: radial-gradient(circle, #fff8d9, #9d9a89 54%, #333); }
+    .camera-mic { position: absolute; top: 26%; right: 15%; width: 4%; aspect-ratio: 1; border-radius: 50%; background: #111; }
+    .back-wordmark { position: absolute; right: 0; bottom: 16%; left: 0; color: rgba(255,255,255,.2); font-size: .64rem; font-weight: 700; letter-spacing: .34em; text-align: center; text-transform: uppercase; }
+    .hero-device { transform: rotateX(-4deg) rotateY(-14deg); }
+    .hero-device .face-front { background: transparent; }
+    .phone-mini { --phone-width: 78px; --phone-radius: 14px; width: 78px; box-shadow: 0 12px 26px rgba(0,0,0,.18); }
+    .phone-mini .device-face { border-radius: 14px; }
+    .phone-mini .screen { inset: 3px; border-radius: 11px; }
+    .phone-mini .island-cutout { top: 5px; height: 5px; }
+    .phone-mini .status-time, .phone-mini .status-date, .phone-mini .home-indicator { display: none; }
+    .phone-mini .camera-plateau { border-radius: 8px; }
+    .phone-mini .lens-cluster { gap: 5%; }
+    .phone-mini .lens { border-width: 1px; }
+    .phone-mini .camera-flash { border-width: 1px; }
+    .phone-mini .back-glass { inset: 3px; border-radius: 11px; }
+
+    /* ===== STORY: SCROLL-PINNED ===== */
+    .story { position: relative; height: var(--story-scroll-space); background: #06070a; }
+    .story-sticky { position: sticky; top: 0; display: grid; min-height: 100svh; overflow: hidden; place-items: center; }
+    .story-backdrops { position: absolute; inset: 0; }
+    .story-backdrop { position: absolute; inset: 0; opacity: 0; transition: opacity 900ms var(--ease-apple); }
+    .story-backdrop.is-active { opacity: 1; }
+    .story-backdrop .image-shell, .story-backdrop .image-shell > img { width: 100%; height: 100%; }
+    .story-backdrop .image-shell > img { object-fit: cover; }
+    .story-backdrop .image-fallback { background: radial-gradient(ellipse at 70% 45%, rgba(122,144,180,.52), transparent 35%), linear-gradient(125deg, #111925, #2b3140 48%, #111218); }
+    .story-backdrop:nth-child(2) .image-fallback { background: radial-gradient(ellipse at 30% 50%, rgba(197,143,128,.42), transparent 28%), linear-gradient(120deg, #342a2c, #181b22 56%, #0a0b0f); }
+    .story-backdrop:nth-child(3) .image-fallback { background: radial-gradient(ellipse at 65% 35%, rgba(116,164,171,.42), transparent 30%), linear-gradient(120deg, #17252b, #1a1b25 58%, #090b0f); }
+    .story-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3,4,7,.82), rgba(3,4,7,.24) 55%, rgba(3,4,7,.56)), linear-gradient(0deg, rgba(3,4,7,.62), transparent 48%, rgba(3,4,7,.22)); }
+    .story-content { position: relative; z-index: 3; display: grid; width: min(var(--content-width), calc(100% - 2 * clamp(1.25rem, 6vw, 5rem))); min-height: 100svh; grid-template-columns: minmax(0,1fr) minmax(280px,.9fr); align-items: center; margin-inline: auto; }
+    .story-copy { position: relative; z-index: 4; max-width: 560px; min-height: 340px; }
+    .story-copy .story-panel { position: absolute; top: 50%; left: 0; width: min(100%, 560px); opacity: 0; transform: translateY(calc(-50% + 25px)); transition: opacity 650ms var(--ease-apple), transform 650ms var(--ease-apple); pointer-events: none; }
+    .story-copy .story-panel.is-active { opacity: 1; transform: translateY(-50%); pointer-events: auto; }
+    .story-panel h2 { margin: 0; font-size: clamp(2.9rem, 6vw, 5.8rem); font-weight: 650; letter-spacing: -.08em; line-height: .95; }
+    .story-panel p { max-width: 450px; margin: var(--space-4) 0 0; color: #d0d2d7; font-size: clamp(1rem, 1.6vw, 1.2rem); }
+    .story-visual { display: grid; min-height: 670px; place-items: center; perspective: 1200px; }
+    .story-phone { --phone-width: clamp(210px, 22vw, 290px); width: var(--phone-width); transform: rotateY(0deg); }
+    .story-progress { position: absolute; bottom: 2.5rem; left: 50%; z-index: 5; display: flex; gap: 8px; transform: translateX(-50%); }
+    .story-progress span { width: 30px; height: 3px; border-radius: var(--radius-pill); background: rgba(255,255,255,.28); transition: background var(--motion-medium) ease, width var(--motion-medium) ease; }
+    .story-progress span.is-active { width: 52px; background: white; }
+
+    /* ===== COLORS ===== */
+    .light-section { color: var(--text-light); background: var(--surface-light); }
+    .colors-section { position: relative; overflow: hidden; }
+    .colors-section .section-copy { color: #666a72; }
+    .colors-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,.85fr); align-items: center; gap: clamp(2rem, 8vw, 7rem); margin-top: var(--space-7); }
+    .color-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-3); }
+    .color-choice {
+      display: flex;
+      min-height: 105px;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      border: 1px solid rgba(0,0,0,.1);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.38);
+      color: #17191e;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color var(--motion-fast) ease, background var(--motion-fast) ease, transform var(--motion-fast) var(--ease-apple);
+    }
+    .color-choice:hover { transform: translateY(-3px); background: rgba(255,255,255,.7); }
+    .color-choice[aria-pressed="true"] { border-color: #282c34; background: rgba(255,255,255,.85); box-shadow: 0 0 0 1px #282c34; }
+    .color-dot { width: 34px; height: 34px; flex: 0 0 auto; border: 1px solid rgba(0,0,0,.16); border-radius: 50%; box-shadow: inset -5px -5px 9px rgba(0,0,0,.12), inset 4px 4px 8px rgba(255,255,255,.3); }
+    .color-choice strong { display: block; font-size: .95rem; }
+    .color-choice small { display: block; margin-top: 3px; color: #737780; font-size: var(--font-size-xs); }
+    .color-preview { position: relative; display: grid; min-height: 560px; place-items: center; border-radius: var(--radius-lg); background: radial-gradient(ellipse, rgba(255,255,255,.95), rgba(221,225,224,.2) 54%, transparent 75%); }
+    .color-preview .device { --phone-width: clamp(205px, 23vw, 285px); box-shadow: 0 36px 75px rgba(25,32,40,.24), inset 0 0 0 2px rgba(255,255,255,.3); }
+    .color-preview-label { position: absolute; bottom: 2rem; color: #686d75; font-size: var(--font-size-xs); letter-spacing: .15em; text-transform: uppercase; }
+
+    /* ===== CAMERA ===== */
+    .camera-section { overflow: hidden; background: #101216; }
+    .camera-layout { display: grid; grid-template-columns: minmax(280px,.8fr) minmax(0,1.2fr); align-items: center; gap: clamp(2rem, 8vw, 7rem); margin-top: var(--space-7); }
+    .camera-iris-wrap { display: grid; justify-items: center; gap: var(--space-4); }
+    .iris {
+      position: relative;
+      width: min(270px, 65vw);
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,.27);
+      border-radius: 50%;
+      background: conic-gradient(from 12deg, #aeb9c7, #303a49 12%, #7e8da3 24%, #202934 37%, #9aa6b4 50%, #293341 63%, #a6b1be 76%, #26303c 88%, #aeb9c7);
+      box-shadow: 0 0 70px rgba(119,153,202,.12), inset 0 0 26px rgba(0,0,0,.9);
+      mask: radial-gradient(circle, transparent 0 var(--aperture-opening), #000 calc(var(--aperture-opening) + 1.5%));
+      -webkit-mask: radial-gradient(circle, transparent 0 var(--aperture-opening), #000 calc(var(--aperture-opening) + 1.5%));
+      transition: --aperture-opening var(--motion-medium) var(--ease-apple);
+    }
+    .iris::before { position: absolute; inset: 8%; border: 2px solid rgba(255,255,255,.27); border-radius: 50%; content: ""; }
+    .iris::after { position: absolute; inset: 39%; border: 2px solid rgba(255,255,255,.2); border-radius: 50%; content: ""; }
+    .aperture-readout { color: white; font-size: clamp(2rem, 4vw, 3.3rem); font-weight: 600; letter-spacing: -.06em; }
+    .aperture-readout span { color: var(--color-muted); font-size: .9rem; font-weight: 500; letter-spacing: 0; }
+    .camera-controls { width: min(100%, 360px); }
+    .control-label-row { display: flex; justify-content: space-between; gap: var(--space-3); margin-bottom: .7rem; color: #d7d9de; font-size: var(--font-size-sm); }
+    input[type="range"] { width: 100%; accent-color: #c4d8f5; cursor: pointer; }
+    .viewfinder {
+      position: relative;
+      min-height: 370px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius-lg);
+      background: #20242d;
+      box-shadow: var(--shadow-soft);
+    }
+    .viewfinder-image { position: absolute; inset: 0; transform: scale(var(--zoom-level,1)); transition: transform 700ms var(--ease-apple), filter 700ms var(--ease-apple); }
+    .viewfinder-image .image-shell, .viewfinder-image .image-shell > img { width: 100%; height: 100%; }
+    .viewfinder-image .image-fallback { background: radial-gradient(ellipse at 52% 42%, #e5b69f 0 9%, transparent 10%), radial-gradient(ellipse at 52% 88%, #4a607a 0 26%, transparent 27%), linear-gradient(130deg, #71889a, #293847 58%, #b5a18f); }
+    .viewfinder-image .image-shell > img { object-fit: cover; }
+    .viewfinder-grid { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, transparent 33.1%, rgba(255,255,255,.32) 33.3%, transparent 33.5%, transparent 66.4%, rgba(255,255,255,.32) 66.6%, transparent 66.8%), linear-gradient(0deg, transparent 33.1%, rgba(255,255,255,.32) 33.3%, transparent 33.5%, transparent 66.4%, rgba(255,255,255,.32) 66.6%, transparent 66.8%); opacity: .45; }
+    .focus-reticle { position: absolute; top: 43%; left: 52%; width: 56px; aspect-ratio: 1; border: 1px solid rgba(255,255,255,.9); transform: translate(-50%,-50%); }
+    .focus-reticle::before, .focus-reticle::after { position: absolute; content: ""; background: rgba(255,255,255,.9); }
+    .focus-reticle::before { top: 50%; left: -7px; width: calc(100% + 14px); height: 1px; }
+    .focus-reticle::after { top: -7px; left: 50%; width: 1px; height: calc(100% + 14px); }
+    .viewfinder-top, .viewfinder-bottom { position: absolute; z-index: 3; right: var(--space-4); left: var(--space-4); display: flex; align-items: center; justify-content: space-between; color: white; font-size: var(--font-size-xs); text-shadow: 0 1px 6px rgba(0,0,0,.8); }
+    .viewfinder-top { top: var(--space-3); }
+    .viewfinder-bottom { bottom: var(--space-3); }
+    .zoom-controls { display: flex; gap: 6px; padding: 4px; border: 1px solid rgba(255,255,255,.22); border-radius: var(--radius-pill); background: rgba(0,0,0,.38); backdrop-filter: blur(12px); }
+    .zoom-button { min-width: 42px; min-height: 34px; border: 0; border-radius: var(--radius-pill); background: transparent; color: white; font-size: var(--font-size-xs); cursor: pointer; }
+    .zoom-button[aria-pressed="true"] { background: white; color: #111; }
+    .sample-switcher { display: flex; flex-wrap: wrap; gap: 8px; margin-top: var(--space-3); }
+    .sample-button { padding: .55rem .8rem; border: 1px solid var(--color-line); border-radius: var(--radius-pill); background: transparent; color: #e5e7eb; font-size: var(--font-size-xs); cursor: pointer; }
+    .sample-button[aria-pressed="true"] { border-color: #e8edf7; background: #e8edf7; color: #111; }
+    .depth-demo { position: relative; min-height: 230px; margin-top: var(--space-4); overflow: hidden; border: 1px solid rgba(255,255,255,.15); border-radius: var(--radius-md); background: #1a2029; }
+    .depth-background, .depth-subject { position: absolute; inset: 0; }
+    .depth-background .image-shell, .depth-background .image-shell > img, .depth-subject .image-shell, .depth-subject .image-shell > img { width: 100%; height: 100%; }
+    .depth-background .image-shell > img, .depth-subject .image-shell > img { object-fit: cover; }
+    .depth-background .image-fallback { background: linear-gradient(120deg, #a2b2ba, #344b56 55%, #d1ad95); }
+    .depth-subject { z-index: 2; width: 54%; left: 23%; clip-path: inset(0 0 0 0); }
+    .depth-subject .image-fallback { background: radial-gradient(ellipse at 52% 28%, #e8c7ad 0 13%, transparent 14%), radial-gradient(ellipse at 52% 95%, #4d6078 0 42%, transparent 43%); }
+    .depth-background { filter: blur(var(--depth-blur)); transform: scale(1.08); transition: filter 500ms ease; }
+    .depth-caption { position: absolute; z-index: 4; right: 12px; bottom: 10px; padding: 5px 9px; border-radius: var(--radius-pill); background: rgba(0,0,0,.54); color: white; font-size: var(--font-size-xs); }
+
+    /* ===== DISPLAY ===== */
+    .display-section { position: relative; overflow: hidden; color: var(--text-light); background: #e9edf3; }
+    .display-section .section-copy { color: #646b76; }
+    .display-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(300px,1fr); align-items: center; gap: clamp(2rem, 8vw, 7rem); margin-top: var(--space-7); }
+    .display-demo {
+      position: relative;
+      display: grid;
+      min-height: 340px;
+      align-content: center;
+      gap: var(--space-4);
+      padding: clamp(1.5rem, 4vw, 3rem);
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #f8fafc, #cbd5e3);
+      box-shadow: 0 30px 60px rgba(55,68,88,.12);
+    }
+    .display-demo::before { position: absolute; inset: 0; content: ""; background: radial-gradient(circle at 70% 35%, rgba(255,255,255,var(--brightness-glow)), transparent 45%); pointer-events: none; }
+    .display-demo-label { position: relative; z-index: 2; color: #5b6370; font-size: var(--font-size-xs); font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+    .motion-track { position: relative; z-index: 2; height: 90px; overflow: hidden; border-block: 1px solid rgba(30,42,60,.13); }
+    .motion-dot { position: absolute; top: 50%; left: 0; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 33% 30%, white, #91b5e8 28%, #375d91 72%); box-shadow: 0 10px 24px rgba(45,91,153,.28); transform: translate3d(0,-50%,0); }
+    .display-controls { display: grid; gap: var(--space-5); }
+    .display-control { padding-bottom: var(--space-4); border-bottom: 1px solid rgba(0,0,0,.13); }
+    .display-control .control-label-row { color: #242932; }
+    .display-control input[type="range"] { accent-color: #334c70; }
+    .display-footnote { color: #777e88; font-size: var(--font-size-xs); }
+
+    /* ===== DYNAMIC ISLAND ===== */
+    .island-section { position: relative; overflow: hidden; text-align: center; background: radial-gradient(ellipse at 50% 46%, rgba(95,122,166,.18), transparent 42%), #0b0d12; }
+    .island-section .section-title, .island-section .section-copy { margin-inline: auto; }
+    .island-playground { display: grid; min-height: 360px; place-items: center; margin-top: var(--space-6); }
+    .island-demo {
+      display: flex;
+      width: min(470px, 90vw);
+      min-height: 86px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border: 1px solid rgba(255,255,255,.19);
+      border-radius: 48px;
+      background: #020304;
+      box-shadow: 0 0 0 1px rgba(255,255,255,.055), 0 18px 50px rgba(0,0,0,.55), 0 0 45px rgba(115,155,222,.14);
+      transition: width 600ms var(--ease-spring), min-height 600ms var(--ease-spring), border-radius 600ms var(--ease-spring), transform 600ms var(--ease-spring);
+    }
+    .island-demo.is-three { width: min(680px, 94vw); min-height: 112px; border-radius: 30px; }
+    .island-activity { display: flex; min-width: 0; align-items: center; gap: 10px; animation: island-pop 520ms var(--ease-spring) both; }
+    @keyframes island-pop { from { opacity: 0; transform: scale(.82) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    .activity-glyph { display: grid; width: 38px; height: 38px; flex: 0 0 auto; place-items: center; border-radius: 50%; background: linear-gradient(145deg, #a4c9ff, #536b92); color: #101722; font-size: .95rem; font-weight: 800; }
+    .activity-copy { min-width: 0; text-align: left; }
+    .activity-copy strong { display: block; overflow: hidden; color: white; font-size: .82rem; text-overflow: ellipsis; white-space: nowrap; }
+    .activity-copy span { display: block; overflow: hidden; color: #aeb5c1; font-size: .68rem; text-overflow: ellipsis; white-space: nowrap; }
+    .island-three-grid { display: grid; width: 100%; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
+    .island-three-grid .island-activity { justify-content: center; padding-inline: 5px; }
+    .island-three-grid .activity-glyph { width: 32px; height: 32px; }
+    .island-three-grid .activity-copy strong { font-size: .72rem; }
+    .island-three-grid .activity-copy span { font-size: .62rem; }
+    .island-next { margin-top: var(--space-4); }
+
+    /* ===== CHIP + BATTERY ===== */
+    .chip-section { position: relative; overflow: hidden; background: #07080b; }
+    .chip-section::before { position: absolute; top: 5%; right: -15%; width: 65vw; aspect-ratio: 1; border-radius: 50%; content: ""; background: radial-gradient(circle, rgba(65,112,183,.17), transparent 68%); filter: blur(24px); }
+    .chip-layout { position: relative; display: grid; grid-template-columns: minmax(0,1.1fr) minmax(280px,.9fr); align-items: center; gap: clamp(2rem, 8vw, 7rem); margin-top: var(--space-7); }
+    .chip-visual { position: relative; display: grid; min-height: 420px; place-items: center; }
+    .chip-svg { width: min(100%, 430px); overflow: visible; filter: drop-shadow(0 0 30px rgba(92,151,247,.23)); }
+    .chip-chip { transform-origin: center; animation: chip-float 6s ease-in-out infinite alternate; }
+    @keyframes chip-float { to { transform: translateY(-11px) rotate(1.3deg); } }
+    .chip-copy h3 { margin: 0; color: white; font-size: clamp(2.4rem, 5vw, 4.7rem); font-weight: 650; letter-spacing: -.07em; line-height: .95; }
+    .chip-copy > p { max-width: 520px; color: var(--color-muted); font-size: 1.08rem; }
+    .chip-stats { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-4); margin-top: var(--space-5); }
+    .chip-stat { padding-top: var(--space-3); border-top: 1px solid var(--color-line); }
+    .chip-stat strong { display: block; color: #f5f6f8; font-size: clamp(2rem, 4vw, 3.6rem); font-weight: 600; letter-spacing: -.07em; }
+    .chip-stat span { color: #999faa; font-size: var(--font-size-xs); }
+    .performance { margin-top: var(--space-5); }
+    .performance-head { display: flex; justify-content: space-between; color: #d6dae1; font-size: var(--font-size-xs); }
+    .performance-track { height: 7px; margin-top: 10px; overflow: hidden; border-radius: var(--radius-pill); background: #242a35; }
+    .performance-fill { width: var(--performance-fill); height: 100%; border-radius: inherit; background: linear-gradient(90deg, #6287bc, #c5dcff); transition: width 1.5s var(--ease-apple); }
+    .battery-block { display: flex; align-items: center; gap: var(--space-4); margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--color-line); }
+    .battery-ring { width: 94px; flex: 0 0 auto; }
+    .battery-ring circle { fill: none; stroke-width: 8; }
+    .battery-ring .ring-base { stroke: #252b35; }
+    .battery-ring .ring-progress { stroke: #c4e8d1; stroke-linecap: round; stroke-dasharray: 251.2; stroke-dashoffset: calc(251.2 * (1 - var(--battery-fill))); transform: rotate(-90deg); transform-origin: center; transition: stroke-dashoffset 1.7s var(--ease-apple); }
+    .battery-copy strong { display: block; font-size: 1.3rem; }
+    .battery-copy span { display: block; margin-top: 3px; color: #a0a6b1; font-size: var(--font-size-xs); }
+
+    /* ===== BUY ===== */
+    .buy-section { color: var(--text-light); background: #eff0ed; }
+    .buy-section .eyebrow { color: #72777d; }
+    .buy-section .section-copy { color: #626770; }
+    .buy-layout { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(280px,.9fr); gap: clamp(2rem, 7vw, 6rem); margin-top: var(--space-7); }
+    .buy-options { min-width: 0; }
+    .option-label { display: block; margin-bottom: var(--space-3); color: #282c33; font-size: var(--font-size-sm); font-weight: 700; }
+    .storage-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .storage-card {
+      display: flex;
+      min-height: 92px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 5px;
+      padding: var(--space-3);
+      border: 1px solid rgba(0,0,0,.14);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,.55);
+      color: #171a20;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color var(--motion-fast) ease, background var(--motion-fast) ease, transform var(--motion-fast) var(--ease-apple);
+    }
+    .storage-card:hover { transform: translateY(-2px); }
+    .storage-card[aria-pressed="true"] { border-color: #242932; background: white; box-shadow: 0 0 0 1px #242932; }
+    .storage-card strong { font-size: 1.1rem; }
+    .storage-card span { color: #707680; font-size: var(--font-size-xs); }
+    .buy-colors { display: flex; flex-wrap: wrap; gap: 10px; margin-top: var(--space-5); }
+    .buy-color { width: 42px; height: 42px; padding: 4px; border: 1px solid transparent; border-radius: 50%; background: transparent; cursor: pointer; }
+    .buy-color[aria-pressed="true"] { border-color: #242932; }
+    .buy-color span { display: block; width: 100%; height: 100%; border: 1px solid rgba(0,0,0,.18); border-radius: 50%; }
+    .buy-summary { position: sticky; top: calc(var(--nav-height) + 2rem); align-self: start; padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px solid rgba(0,0,0,.1); border-radius: var(--radius-lg); background: rgba(255,255,255,.62); box-shadow: 0 25px 60px rgba(34,43,55,.08); }
+    .buy-preview { display: grid; min-height: 245px; place-items: center; overflow: hidden; border-radius: var(--radius-md); background: radial-gradient(ellipse, #fff, #e2e5e7 72%); }
+    .buy-preview .device { --phone-width: 104px; --phone-radius: 18px; box-shadow: 0 18px 35px rgba(20,28,39,.2); }
+    .buy-preview .device-face { border-radius: 18px; }
+    .buy-preview .screen { inset: 3px; border-radius: 15px; }
+    .buy-preview .island-cutout { top: 5px; height: 7px; }
+    .buy-preview .status-time, .buy-preview .status-date, .buy-preview .home-indicator { display: none; }
+    .buy-preview .camera-plateau { border-radius: 10px; }
+    .buy-preview .lens-cluster { gap: 5%; }
+    .buy-preview .lens { border-width: 1px; }
+    .buy-preview .camera-flash { border-width: 1px; }
+    .buy-preview .back-glass { inset: 3px; border-radius: 15px; }
+    .buy-selected-name { margin: var(--space-3) 0 0; color: #737983; font-size: var(--font-size-xs); text-align: center; }
+    .price-line { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid rgba(0,0,0,.12); }
+    .price-line span { color: #606671; font-size: var(--font-size-sm); }
+    .price-line strong { color: #12151a; font-size: 2rem; letter-spacing: -.06em; }
+    .buy-cta { width: 100%; margin-top: var(--space-4); background: #171a20; color: white; }
+    .buy-cta:hover { background: #303640; }
+    .specs { margin-top: var(--space-8); border-top: 1px solid rgba(0,0,0,.16); }
+    .specs h3 { margin: 0; padding: var(--space-4) 0; font-size: clamp(1.8rem, 4vw, 3rem); letter-spacing: -.06em; }
+    .spec-row { border-top: 1px solid rgba(0,0,0,.13); }
+    .spec-row summary { display: flex; min-height: 68px; align-items: center; justify-content: space-between; gap: var(--space-3); color: #171a20; font-weight: 650; list-style: none; cursor: pointer; }
+    .spec-row summary::-webkit-details-marker { display: none; }
+    .spec-row summary::after { content: "+"; color: #6c727c; font-size: 1.5rem; font-weight: 400; transition: transform var(--motion-fast) ease; }
+    .spec-row[open] summary::after { transform: rotate(45deg); }
+    .spec-row p { max-width: 800px; margin: 0 0 var(--space-4); color: #656c76; line-height: 1.6; }
+
+    /* ===== FOOTER ===== */
+    .site-footer { padding: var(--space-7) 0 var(--space-5); background: #08090b; color: #9ba0aa; }
+    .footer-top { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--space-5); padding-bottom: var(--space-5); border-bottom: 1px solid var(--color-line); }
+    .footer-brand { color: #f3f4f6; font-size: 1.1rem; font-weight: 700; }
+    .footer-note { max-width: 460px; margin: 0; font-size: var(--font-size-sm); }
+    .credits { margin-top: var(--space-4); font-size: var(--font-size-xs); line-height: 1.8; }
+    .credits strong { color: #d7dae0; }
+    .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-3); margin-top: var(--space-5); font-size: var(--font-size-xs); }
+    .edit-hint { color: #858b95; }
+
+    /* ===== IMAGE EDITOR ===== */
+    .image-editor {
+      position: fixed;
+      z-index: 90;
+      top: 82px;
+      right: clamp(12px, 3vw, 34px);
+      display: none;
+      width: min(430px, calc(100vw - 24px));
+      max-height: calc(100svh - 100px);
+      overflow: auto;
+      padding: var(--space-4);
+      border: 1px solid rgba(255,255,255,.17);
+      border-radius: var(--radius-md);
+      background: rgba(18,20,25,.96);
+      box-shadow: 0 25px 90px rgba(0,0,0,.6);
+      backdrop-filter: blur(24px);
+    }
+    .image-editor.is-open { display: block; animation: editor-in 260ms var(--ease-apple) both; }
+    @keyframes editor-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .editor-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-3); }
+    .editor-head h2 { margin: 0; color: white; font-size: 1.1rem; }
+    .editor-close { width: 34px; height: 34px; border: 1px solid var(--color-line); border-radius: 50%; background: transparent; cursor: pointer; }
+    .editor-help { margin: 0 0 var(--space-4); color: #a4aab5; font-size: var(--font-size-xs); }
+    .editor-list { display: grid; gap: var(--space-3); }
+    .editor-field { display: grid; gap: 6px; }
+    .editor-field label { color: #e1e4ea; font-size: var(--font-size-xs); font-weight: 650; }
+    .editor-field input { width: 100%; min-height: 40px; padding: .55rem .75rem; border: 1px solid rgba(255,255,255,.16); border-radius: 9px; background: #090a0d; color: white; font-size: .78rem; }
+    .editor-field input::placeholder { color: #777e89; }
+    .editor-actions { display: flex; gap: 9px; margin-top: var(--space-4); }
+    .editor-actions button { flex: 1; min-height: 40px; border: 1px solid rgba(255,255,255,.18); border-radius: var(--radius-pill); background: rgba(255,255,255,.08); color: white; font-size: var(--font-size-xs); cursor: pointer; }
+    .editor-actions .reset-button { background: #f2f3f5; color: #15171b; }
+    .editor-status { min-height: 1.4em; margin: var(--space-2) 0 0; color: #b8cde9; font-size: var(--font-size-xs); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: minmax(0,1fr) minmax(260px,.8fr); }
+      .hero-visual { min-height: 560px; }
+      .hero-phone-interaction { min-height: 560px; }
+      .story-content { grid-template-columns: minmax(0,1fr) minmax(230px,.8fr); }
+      .story-visual { min-height: 540px; }
+      .colors-layout, .camera-layout, .display-layout, .chip-layout, .buy-layout { gap: var(--space-5); }
+      .color-preview { min-height: 470px; }
+    }
+    @media (max-width: 700px) {
+      :root { --nav-height: 60px; --phone-width: 222px; --phone-radius: 36px; --section-pad: 5.5rem; --story-scroll-space: 260vh; }
+      .content-width { width: min(100% - 2.25rem, var(--content-width)); }
+      .nav-links { gap: .85rem; font-size: .68rem; }
+      .nav-links a:nth-child(2), .nav-links a:nth-child(3) { display: none; }
+      .nav-buy { min-height: 32px; padding-inline: .8rem; }
+      .hero { min-height: auto; padding-top: calc(var(--nav-height) + 3.3rem); padding-bottom: 3rem; }
+      .hero-grid { grid-template-columns: 1fr; gap: 0; }
+      .hero-copy { padding-block: 0; text-align: center; }
+      .hero h1 { font-size: clamp(3.65rem, 17vw, 6rem); }
+      .hero-subline { margin-inline: auto; font-size: 1.05rem; }
+      .hero-actions { justify-content: center; margin-top: var(--space-4); }
+      .hero-price { margin-top: var(--space-3); }
+      .hero-visual { min-height: 510px; margin-top: -1rem; }
+      .hero-phone-interaction { min-height: 500px; }
+      .hero-device { --phone-width: 218px; }
+      .hero-caption { bottom: 0; }
+      .story { height: var(--story-scroll-space); }
+      .story-sticky { min-height: 100svh; }
+      .story-content { display: flex; min-height: 100svh; flex-direction: column; justify-content: center; padding-block: 5rem 4rem; }
+      .story-copy { width: 100%; min-height: 185px; }
+      .story-copy .story-panel { top: 0; transform: translateY(18px); }
+      .story-copy .story-panel.is-active { transform: translateY(0); }
+      .story-panel h2 { font-size: clamp(2.8rem, 12vw, 4.3rem); }
+      .story-panel p { margin-top: var(--space-3); font-size: .98rem; }
+      .story-visual { min-height: 410px; width: 100%; margin-top: 1rem; }
+      .story-phone { --phone-width: 190px; --phone-radius: 32px; }
+      .story-progress { bottom: 1.5rem; }
+      .colors-layout, .camera-layout, .display-layout, .chip-layout, .buy-layout { grid-template-columns: 1fr; }
+      .colors-layout { margin-top: var(--space-5); }
+      .color-grid { gap: 8px; }
+      .color-choice { min-height: 84px; gap: 9px; padding: 10px; }
+      .color-dot { width: 28px; height: 28px; }
+      .color-choice strong { font-size: .85rem; }
+      .color-preview { min-height: 440px; }
+      .color-preview .device { --phone-width: 214px; }
+      .camera-layout { margin-top: var(--space-5); }
+      .camera-iris-wrap { grid-template-columns: auto 1fr; align-items: center; justify-items: start; }
+      .iris { width: min(160px, 38vw); }
+      .aperture-readout { font-size: 2.2rem; }
+      .camera-controls { width: 100%; grid-column: 1 / -1; }
+      .viewfinder { min-height: 300px; }
+      .depth-demo { min-height: 190px; }
+      .display-layout { margin-top: var(--space-5); }
+      .display-demo { min-height: 285px; padding: var(--space-4); }
+      .island-playground { min-height: 290px; }
+      .island-demo { min-height: 78px; padding: 10px 13px; }
+      .island-demo.is-three { min-height: 105px; }
+      .island-three-grid { gap: 3px; }
+      .island-three-grid .island-activity { flex-direction: column; gap: 4px; }
+      .island-three-grid .activity-copy { text-align: center; }
+      .island-three-grid .activity-copy span { display: none; }
+      .chip-layout { margin-top: var(--space-5); }
+      .chip-visual { min-height: 300px; }
+      .battery-block { margin-top: var(--space-4); }
+      .buy-layout { margin-top: var(--space-5); }
+      .buy-summary { position: relative; top: auto; }
+      .storage-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+      .footer-top { flex-direction: column; }
+    }
+    @media (max-width: 390px) {
+      .nav-links a:first-child { display: none; }
+      .hero h1 { font-size: 3.45rem; }
+      .hero-visual { min-height: 455px; }
+      .hero-phone-interaction { min-height: 440px; }
+      .hero-device { --phone-width: 194px; }
+      .color-choice { min-height: 76px; }
+      .color-choice small { font-size: .64rem; }
+      .story-visual { min-height: 370px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" id="skip-link" href="#main"></a>
+  <div id="app"></div>
+  <aside class="image-editor" id="image-editor" aria-label="Edit image URLs" aria-hidden="true"></aside>
+
+  <script>
+    /* ===== CONTENT: EDIT THE PAGE HERE ===== */
+    const CONTENT = {
+      pageTitle: "iPhone 18 Pro Max — Built for the extraordinary",
+      seoDescription: "An unofficial iPhone 18 Pro Max fan concept product page.",
+      navigation: {
+        brand: "iPhone 18 Pro Max",
+        links: [
+          { label: "Overview", href: "#overview" },
+          { label: "Camera", href: "#camera" },
+          { label: "Display", href: "#display" }
+        ],
+        buyLabel: "Buy",
+        editHint: "Press E to edit images"
+      },
+      accessibility: {
+        skip: "Skip to content",
+        phoneFront: "Front view of the concept phone",
+        phoneBack: "Back view of the concept phone",
+        colorLabel: "Choose phone color",
+        storageLabel: "Choose storage capacity",
+        zoomLabel: "Choose camera zoom",
+        storyProgress: "Story progress",
+        sampleLabel: "Choose camera sample",
+        editorLabel: "Edit image URLs",
+        heroPhonePreview: "Interactive 3D phone preview",
+        colorPreview: "Selected finish preview",
+        cameraViewfinder: "Camera viewfinder preview",
+        selectedConfiguration: "Selected phone configuration",
+        chipIllustration: "Abstract processor illustration",
+        batteryRing: "Illustrative battery progress ring"
+      },
+      ui: {
+        screenDate: "ALL IN ONE VIEW",
+        screenTime: "9:41",
+        deviceMark: "PRO MAX",
+        motionPreview: "LIVE MOTION PREVIEW",
+        cameraBadge: "48 MP · FUSION",
+        apertureVariable: "variable",
+        initialAperture: 28,
+        initialZoom: "1×",
+        initialRefreshRate: 60,
+        initialBrightness: 55,
+        refreshUnit: "Hz",
+        brightnessUnit: "%",
+        refreshRangeHint: "1Hz — 120Hz",
+        chipDiagramPrimary: "A20",
+        chipDiagramSecondary: "PRO",
+        footerTag: "Fan concept",
+        editorTitle: "Edit image URLs",
+        editorHelp: "Paste direct HTTPS or HTTP image URLs. Changes preview immediately and save in this browser. Leave a field empty to use its built-in fallback.",
+        editorPlaceholder: "PASTE IMAGE URL HERE",
+        editorClose: "Close",
+        editorReset: "Reset all image URLs",
+        editorUpdated: "updated.",
+        editorResetDone: "All image URLs reset to their original values.",
+        editorStorageError: "Preview updated, but browser storage is unavailable.",
+        editorAltPrefix: "Image slot"
+      },
+      hero: {
+        eyebrow: "A new point of view",
+        headline: ["iPhone 18", "Pro Max."],
+        subline: "A more considered design. A camera system built to see further. Power with room to move.",
+        priceLead: "Starting at",
+        price: "$1,299",
+        priceNote: "US price · 256GB · Concept page",
+        primaryCta: "Explore the details",
+        secondaryCta: "Choose your finish",
+        caption: "A product concept · Details subject to change"
+      },
+      story: {
+        eyebrow: "Designed around possibility",
+        panels: [
+          { title: "A quieter kind of bold.", copy: "An aluminum unibody meets carefully layered glass. Every edge has a reason to be there.", image: "storyDesign" },
+          { title: "Make the moment yours.", copy: "Three 48MP rear cameras give the camera system room to adapt to the scene in front of you.", image: "storyCamera" },
+          { title: "Power that stays with you.", copy: "A20 Pro is built on a 2nm process. A long-running idea, made for the things you do every day.", image: "storyEveryday" }
+        ]
+      },
+      colors: {
+        eyebrow: "Four finishes. One unmistakable form.",
+        title: "Find your shade.",
+        copy: "A finish for every kind of focus. Select a color to update the phone preview.",
+        previewLabel: "Selected finish"
+      },
+      /* Add one color object here. frontImage is optional; an empty string uses the CSS render. */
+      colorsList: [
+        { name: "Black", hex: "#292c32", finish: "Deep graphite", frontImage: "frontBlack" },
+        { name: "Silver", hex: "#d7dce2", finish: "Soft metallic", frontImage: "frontSilver" },
+        { name: "Glacier", hex: "#a8c8df", finish: "Cool blue", frontImage: "frontGlacier" },
+        { name: "Burgundy", hex: "#682d40", finish: "Deep red", frontImage: "frontBurgundy" }
+      ],
+      camera: {
+        eyebrow: "The camera system",
+        title: "More room for the moment.",
+        copy: "Three 48MP rear cameras, led by a 48MP Fusion main camera with variable aperture. Shape depth, light and perspective in the moment.",
+        apertureLabel: "Aperture",
+        apertureHint: "Drag to change the f-stop",
+        zoomLabel: "Optical viewfinder concept",
+        zooms: ["0.5×", "1×", "2×", "5×"],
+        samples: [
+          { label: "Portrait", slot: "cameraSample1" },
+          { label: "Landscape", slot: "cameraSample2" },
+          { label: "Detail", slot: "cameraSample3" }
+        ],
+        zoomScales: { "0.5×": 0.78, "1×": 1, "2×": 1.45, "5×": 2.1 },
+        apertureMin: 14,
+        apertureMax: 160,
+        apertureScale: 10,
+        apertureOpeningMin: 14,
+        apertureOpeningMax: 45,
+        blurMin: 1,
+        blurMax: 17,
+        sampleAlt: "Camera sample photograph",
+        focusLabel: "Focus point",
+        depthTitle: "Depth of field",
+        depthHint: "A lower f-stop creates a softer background in this visual demo.",
+        frontCamera: "18MP front camera",
+        mainCamera: "48MP Fusion main camera"
+      },
+      display: {
+        eyebrow: "A display that keeps up",
+        title: "Fluid by design.",
+        copy: "A 6.9-inch display with an adaptive 1–120Hz refresh rate. Move the slider and watch the motion demo change its cadence.",
+        motionLabel: "Refresh rate",
+        brightnessLabel: "Brightness glow",
+        motionHint: "The moving light updates at the selected cadence.",
+        brightnessHint: "A visual brightness preview, not a measured display value."
+      },
+      island: {
+        eyebrow: "A smaller Dynamic Island",
+        title: "Your now, at a glance.",
+        copy: "Cycle through Live Activities, then bring three into view at once.",
+        button: "Next Live Activity",
+        states: [
+          { kind: "timer", icon: "◷", title: "Timer", detail: "08:42 remaining" },
+          { kind: "music", icon: "♫", title: "Now playing", detail: "A quiet instrumental" },
+          { kind: "maps", icon: "↗", title: "Route guidance", detail: "Turn right in 300 m" },
+          { kind: "call", icon: "⌕", title: "Call in progress", detail: "Maya · 04:18" },
+          { kind: "three", icon: "•", title: "Three activities", detail: "Timer · Music · Maps" }
+        ]
+      },
+      chip: {
+        eyebrow: "A more capable core",
+        title: "A20 Pro. 2nm.",
+        copy: "Built on a 2nm process, A20 Pro is the foundation for responsive performance and ambitious on-device experiences.",
+        stats: [
+          { value: "2nm", countTo: 2, prefix: "", suffix: "nm", label: "Chip process" },
+          { value: "A20", countTo: 20, prefix: "A", suffix: "", label: "Pro chip family" }
+        ],
+        performanceLabel: "Performance architecture",
+        performanceNote: "Illustrative visual · Benchmarks TBC",
+        batteryTitle: "Made to go further.",
+        batteryCopy: "Marketed as the longest battery life in an iPhone. Exact runtime: XX (placeholder)."
+      },
+      buy: {
+        eyebrow: "Make it yours",
+        title: "Your iPhone. Your way.",
+        copy: "Choose a capacity and finish. Placeholder prices are shown where pricing has not been supplied.",
+        storageLabel: "Storage",
+        colorLabel: "Color",
+        priceLabel: "US price",
+        priceSuffix: " before tax",
+        cta: "Continue",
+        ctaHref: "#buy",
+        previewLabel: "Your configuration",
+        specsTitle: "Technical details",
+        priceNote: "256GB starts at $1,299 USD. Other storage prices are placeholders.",
+        placeholderPrice: "TBC"
+      },
+      storage: [
+        { size: "256GB", price: "$1,299", note: "Starting price" },
+        { size: "512GB", price: "TBC", note: "Placeholder price" },
+        { size: "1TB", price: "TBC", note: "Placeholder price" },
+        { size: "2TB", price: "TBC", note: "Placeholder price" }
+      ],
+      specs: [
+        { title: "Display", body: "6.9-inch display with an adaptive 1–120Hz refresh rate. Display technology beyond these supplied details: TBC." },
+        { title: "Cameras", body: "Three 48MP rear cameras, including a 48MP Fusion main camera with variable aperture, plus an 18MP front camera." },
+        { title: "Chip", body: "A20 Pro chip built on a 2nm process." },
+        { title: "Materials and durability", body: "Aluminum unibody, Ceramic Shield 2 front, Ceramic Shield back and IP68. Additional durability conditions: TBC." },
+        { title: "Battery", body: "Marketed as the longest battery life in an iPhone. Exact battery runtime: XX (placeholder)." },
+        { title: "Dynamic Island", body: "A smaller Dynamic Island that can show up to three Live Activities at once." },
+        { title: "Connectivity and dimensions", body: "TBC." }
+      ],
+      footer: {
+        brand: "iPhone 18 Pro Max · Concept",
+        note: "A speculative front-end concept built from the product facts supplied for this page. Unconfirmed details remain marked TBC.",
+        disclaimer: "Unofficial fan concept. Not affiliated with Apple Inc. Images belong to their respective owners.",
+        creditsLabel: "Image credits",
+        noCredits: "No external images are currently configured.",
+        editorHint: "Press E to edit image URLs"
+      },
+      links: {
+        overview: "#overview",
+        colors: "#colors",
+        camera: "#camera",
+        display: "#display",
+        buy: "#buy"
+      },
+      storagePlaceholder: "TBC",
+      motion: {
+        heroTiltY: 20,
+        heroTiltX: 12,
+        heroBaseRotationY: -9,
+        heroBaseRotationX: -3,
+        storyRotation: 180,
+        storyScaleChange: 0.12,
+        storyParallax: 24,
+        displayCycleSeconds: 2.7,
+        counterDurationMs: 900,
+        islandStaggerMs: 70,
+        performanceFill: 88
+      },
+      /* Every image slot has a URL, alt text and credit. Paste direct image URLs below. */
+      IMAGES: {
+        // PASTE IMAGE URL HERE: transparent phone render for the hero.
+        heroPhone: { url: "", alt: "Transparent front render of the iPhone 18 Pro Max concept", credit: "" },
+        // PASTE IMAGE URL HERE: transparent rear phone render.
+        backPhone: { url: "", alt: "Transparent rear render showing the camera plateau", credit: "" },
+        // PASTE IMAGE URL HERE: Black front render.
+        frontBlack: { url: "", alt: "Front render in Black", credit: "" },
+        // PASTE IMAGE URL HERE: Silver front render.
+        frontSilver: { url: "", alt: "Front render in Silver", credit: "" },
+        // PASTE IMAGE URL HERE: Glacier front render.
+        frontGlacier: { url: "", alt: "Front render in Glacier blue", credit: "" },
+        // PASTE IMAGE URL HERE: Burgundy front render.
+        frontBurgundy: { url: "", alt: "Front render in Burgundy", credit: "" },
+        // PASTE IMAGE URL HERE: screen wallpaper image.
+        screenWallpaper: { url: "", alt: "Abstract blue and violet screen wallpaper", credit: "" },
+        // PASTE IMAGE URL HERE: camera sample photo 1, portrait.
+        cameraSample1: { url: "", alt: "Portrait-style camera sample", credit: "" },
+        // PASTE IMAGE URL HERE: camera sample photo 2, landscape.
+        cameraSample2: { url: "", alt: "Landscape camera sample", credit: "" },
+        // PASTE IMAGE URL HERE: camera sample photo 3, detail.
+        cameraSample3: { url: "", alt: "Close-up detail camera sample", credit: "" },
+        // PASTE IMAGE URL HERE: lifestyle background for story moment 1.
+        storyDesign: { url: "", alt: "Minimal architectural scene with sculptural materials", credit: "" },
+        // PASTE IMAGE URL HERE: lifestyle background for story moment 2.
+        storyCamera: { url: "", alt: "Atmospheric outdoor scene at golden hour", credit: "" },
+        // PASTE IMAGE URL HERE: lifestyle background for story moment 3.
+        storyEveryday: { url: "", alt: "Quiet everyday scene with soft natural light", credit: "" }
+      }
+    };
+
+    const DEFAULT_IMAGE_URLS = Object.fromEntries(Object.entries(CONTENT.IMAGES).map(([slot, item]) => [slot, item.url]));
+
+    /* ===== SMALL HELPERS ===== */
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+    const escapeHTML = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+    const safeImageURL = (value) => /^https?:\/\//i.test(String(value || "").trim()) ? String(value).trim() : "";
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let selectedColor = CONTENT.colorsList[0];
+    let selectedStorage = CONTENT.storage[0];
+    let currentSample = 0;
+    let currentZoom = CONTENT.ui.initialZoom;
+    let islandIndex = 0;
+    let displayRate = CONTENT.ui.initialRefreshRate;
+    let displayBrightness = CONTENT.ui.initialBrightness;
+    let storyProgress = 0;
+    let scrollFrame = 0;
+    let displayFrame = 0;
+    let displayStart = 0;
+    let displayVisible = false;
+    const imageWarnings = new Set();
+
+    /* ===== HTML TEMPLATES ===== */
+    function imageMarkup(slot, className = "") {
+      const item = CONTENT.IMAGES[slot];
+      const shape = slot.startsWith("story") ? "photo" : slot.startsWith("camera") ? "sample" : "render";
+      return `<div class="image-shell ${shape} ${className}" data-image-slot="${escapeHTML(slot)}" aria-label="${escapeHTML(item.alt)}"><span class="image-fallback" aria-hidden="true"></span><img alt="${escapeHTML(item.alt)}" width="1200" height="900" loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>`;
+    }
+
+    function phoneMarkup(options = {}) {
+      const front = options.front || "heroPhone";
+      const back = options.back || "backPhone";
+      const extra = options.className || "";
+      const color = options.color || selectedColor.hex;
+      const mini = options.mini ? " phone-mini" : "";
+      return `<div class="device ${extra}${mini}" style="--device-color:${escapeHTML(color)}" aria-label="${escapeHTML(CONTENT.accessibility.phoneFront)}">
+        <div class="device-face face-front">
+          <div class="screen">
+            <div class="wallpaper">${imageMarkup("screenWallpaper", "wallpaper-image")}</div>
+            <span class="status-date">${escapeHTML(CONTENT.ui.screenDate)}</span><span class="status-time">${escapeHTML(CONTENT.ui.screenTime)}</span>
+            <span class="island-cutout" aria-hidden="true"></span><span class="screen-reflection" aria-hidden="true"></span><span class="home-indicator" aria-hidden="true"></span>
+          </div>
+          <div class="render-overlay">${imageMarkup(front, "phone-render")}</div>
+        </div>
+        <div class="device-face face-back">
+          <div class="back-glass"><div class="camera-plateau"><div class="lens-cluster"><span class="lens"></span><span class="lens"></span><span class="lens"></span></div><span class="camera-flash"></span><span class="camera-mic"></span></div><span class="back-wordmark">${escapeHTML(CONTENT.ui.deviceMark)}</span></div>
+          <div class="render-overlay">${imageMarkup(back, "phone-render")}</div>
+        </div>
+      </div>`;
+    }
+
+    function renderPage() {
+      const nav = CONTENT.navigation;
+      const hero = CONTENT.hero;
+      const story = CONTENT.story;
+      const camera = CONTENT.camera;
+      const display = CONTENT.display;
+      const island = CONTENT.island;
+      const chip = CONTENT.chip;
+      const buy = CONTENT.buy;
+
+      document.title = CONTENT.pageTitle;
+      const description = document.querySelector('meta[name="description"]');
+      if (description) description.content = CONTENT.seoDescription;
+      $("#skip-link").textContent = CONTENT.accessibility.skip;
+      $("#app").innerHTML = `
+        <!-- ===== SECTION: NAV ===== -->
+        <header class="site-nav">
+          <nav class="content-width nav-inner" aria-label="Main navigation">
+            <a class="brand-mark" href="#overview"><span class="brand-dot" aria-hidden="true"></span>${escapeHTML(nav.brand)}</a>
+            <div class="nav-links">${nav.links.map((link) => `<a href="${escapeHTML(link.href)}">${escapeHTML(link.label)}</a>`).join("")}</div>
+            <a class="pill-link nav-buy" id="nav-buy" href="${escapeHTML(CONTENT.links.buy)}">${escapeHTML(nav.buyLabel)}</a>
+          </nav>
+        </header>
+
+        <main id="main">
+          <!-- ===== SECTION: HERO ===== -->
+          <section class="hero" id="overview">
+            <div class="content-width hero-grid">
+              <div class="hero-copy reveal">
+                <p class="eyebrow">${escapeHTML(hero.eyebrow)}</p>
+                <h1>${hero.headline.map((line) => `<span class="gradient-text">${escapeHTML(line)}</span>`).join("")}</h1>
+                <p class="hero-subline">${escapeHTML(hero.subline)}</p>
+                <div class="hero-actions">
+                  <a class="primary-button" href="${escapeHTML(CONTENT.links.colors)}">${escapeHTML(hero.primaryCta)} <span aria-hidden="true">↗</span></a>
+                  <a class="quiet-button" href="${escapeHTML(CONTENT.links.buy)}">${escapeHTML(hero.secondaryCta)}</a>
+                </div>
+                <p class="hero-price">${escapeHTML(hero.priceLead)} <strong>${escapeHTML(hero.price)}</strong><br>${escapeHTML(hero.priceNote)}</p>
+              </div>
+              <div class="hero-visual" id="hero-visual" aria-label="${escapeHTML(CONTENT.accessibility.heroPhonePreview)}">
+                <div class="hero-glow"></div>
+                <div class="hero-phone-interaction" id="hero-phone-interaction">${phoneMarkup({ className: "hero-device" })}</div>
+                <p class="hero-caption">${escapeHTML(hero.caption)}</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== SECTION: STORY ===== -->
+          <section class="story" id="story" aria-label="Product story">
+            <div class="story-sticky">
+              <div class="story-backdrops">${story.panels.map((panel, index) => `<div class="story-backdrop ${index === 0 ? "is-active" : ""}" data-story-bg="${index}">${imageMarkup(panel.image)}<div class="story-overlay"></div></div>`).join("")}</div>
+              <div class="story-content">
+                <div class="story-copy">
+                  <p class="eyebrow">${escapeHTML(story.eyebrow)}</p>
+                  ${story.panels.map((panel, index) => `<article class="story-panel ${index === 0 ? "is-active" : ""}" data-story-panel="${index}" aria-live="polite"><h2>${escapeHTML(panel.title)}</h2><p>${escapeHTML(panel.copy)}</p></article>`).join("")}
+                </div>
+                <div class="story-visual">${phoneMarkup({ className: "story-phone", front: "heroPhone", back: "backPhone" })}</div>
+              </div>
+              <div class="story-progress" role="group" aria-label="${escapeHTML(CONTENT.accessibility.storyProgress)}">${story.panels.map((_, index) => `<span class="${index === 0 ? "is-active" : ""}" data-story-step="${index}"></span>`).join("")}</div>
+            </div>
+          </section>
+
+          <!-- ===== SECTION: COLORS ===== -->
+          <section class="colors-section light-section section-pad" id="colors">
+            <div class="content-width">
+              <div class="reveal"><p class="eyebrow">${escapeHTML(CONTENT.colors.eyebrow)}</p><h2 class="section-title">${escapeHTML(CONTENT.colors.title)}</h2><p class="section-copy">${escapeHTML(CONTENT.colors.copy)}</p></div>
+              <div class="colors-layout">
+                <div class="color-grid" role="group" aria-label="${escapeHTML(CONTENT.accessibility.colorLabel)}">
+                  ${CONTENT.colorsList.map((color, index) => `<button class="color-choice" type="button" data-color-index="${index}" aria-pressed="${index === 0}" aria-label="${escapeHTML(color.name)} — ${escapeHTML(color.finish)}"><span class="color-dot" style="background:${escapeHTML(color.hex)}"></span><span><strong>${escapeHTML(color.name)}</strong><small>${escapeHTML(color.finish)}</small></span></button>`).join("")}
+                </div>
+                <div class="color-preview reveal" id="color-preview" role="group" aria-label="${escapeHTML(CONTENT.accessibility.colorPreview)}">${phoneMarkup({ className: "color-phone", front: "frontBlack", back: "backPhone", color: CONTENT.colorsList[0].hex })}<span class="color-preview-label" id="color-preview-label">${escapeHTML(CONTENT.colors.previewLabel)} · ${escapeHTML(CONTENT.colorsList[0].name)}</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== SECTION: CAMERA ===== -->
+          <section class="camera-section section-pad" id="camera">
+            <div class="content-width">
+              <div class="reveal"><p class="eyebrow">${escapeHTML(camera.eyebrow)}</p><h2 class="section-title">${escapeHTML(camera.title)}</h2><p class="section-copy">${escapeHTML(camera.copy)}</p></div>
+              <div class="camera-layout">
+                <div class="camera-iris-wrap reveal">
+                  <div class="iris" id="aperture-iris" aria-hidden="true"></div>
+                  <div class="aperture-readout" id="aperture-readout">f/${(CONTENT.ui.initialAperture / 10).toFixed(1)} <span>${escapeHTML(CONTENT.ui.apertureVariable)}</span></div>
+                  <div class="camera-controls">
+                    <div class="control-label-row"><label for="aperture-range">${escapeHTML(camera.apertureLabel)}</label><span>${escapeHTML(camera.apertureHint)}</span></div>
+                    <input id="aperture-range" type="range" min="${CONTENT.camera.apertureMin}" max="${CONTENT.camera.apertureMax}" step="1" value="${CONTENT.ui.initialAperture}" aria-label="${escapeHTML(camera.apertureLabel)}">
+                    <p class="microcopy">${escapeHTML(camera.depthHint)}</p>
+                    <p class="microcopy">${escapeHTML(camera.mainCamera)} · ${escapeHTML(camera.frontCamera)}</p>
+                  </div>
+                </div>
+                <div class="camera-lab reveal">
+                  <div class="viewfinder" id="viewfinder" role="img" aria-label="${escapeHTML(CONTENT.accessibility.cameraViewfinder)}">
+                    <div class="viewfinder-image" id="viewfinder-image">${imageMarkup("cameraSample1")}</div>
+                    <div class="viewfinder-grid" aria-hidden="true"></div><div class="focus-reticle" aria-hidden="true"></div>
+                    <div class="viewfinder-top"><span>${escapeHTML(camera.zoomLabel)}</span><span id="zoom-readout">${escapeHTML(CONTENT.ui.initialZoom)}</span></div>
+                    <div class="viewfinder-bottom"><span>${escapeHTML(CONTENT.ui.cameraBadge)}</span><div class="zoom-controls" role="group" aria-label="${escapeHTML(CONTENT.accessibility.zoomLabel)}">${camera.zooms.map((zoom) => `<button type="button" class="zoom-button" data-zoom="${escapeHTML(zoom)}" aria-pressed="${zoom === CONTENT.ui.initialZoom}">${escapeHTML(zoom)}</button>`).join("")}</div></div>
+                  </div>
+                  <div class="sample-switcher" role="group" aria-label="${escapeHTML(CONTENT.accessibility.sampleLabel)}">${camera.samples.map((sample, index) => `<button type="button" class="sample-button" data-sample="${index}" aria-pressed="${index === 0}">${escapeHTML(sample.label)}</button>`).join("")}</div>
+                  <div class="depth-demo" id="depth-demo">
+                    <div class="depth-background">${imageMarkup("cameraSample2")}</div>
+                    <div class="depth-subject">${imageMarkup("cameraSample3")}</div>
+                    <span class="depth-caption">${escapeHTML(camera.depthTitle)}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== SECTION: DISPLAY ===== -->
+          <section class="display-section section-pad" id="display">
+            <div class="content-width">
+              <div class="reveal"><p class="eyebrow">${escapeHTML(display.eyebrow)}</p><h2 class="section-title">${escapeHTML(display.title)}</h2><p class="section-copy">${escapeHTML(display.copy)}</p></div>
+              <div class="display-layout">
+                <div class="display-demo reveal" id="display-demo">
+                  <span class="display-demo-label">${escapeHTML(CONTENT.ui.motionPreview)}</span>
+                  <div class="motion-track"><span class="motion-dot" id="motion-dot"></span></div>
+                  <span class="display-footnote">${escapeHTML(display.motionHint)}</span>
+                </div>
+                <div class="display-controls reveal">
+                  <div class="display-control"><div class="control-label-row"><label for="refresh-range">${escapeHTML(display.motionLabel)}</label><strong id="refresh-value">${CONTENT.ui.initialRefreshRate}${escapeHTML(CONTENT.ui.refreshUnit)}</strong></div><input id="refresh-range" type="range" min="1" max="120" step="1" value="${CONTENT.ui.initialRefreshRate}"><p class="display-footnote">${escapeHTML(CONTENT.ui.refreshRangeHint)}</p></div>
+                  <div class="display-control"><div class="control-label-row"><label for="brightness-range">${escapeHTML(display.brightnessLabel)}</label><strong id="brightness-value">${CONTENT.ui.initialBrightness}${escapeHTML(CONTENT.ui.brightnessUnit)}</strong></div><input id="brightness-range" type="range" min="15" max="100" step="1" value="${CONTENT.ui.initialBrightness}"><p class="display-footnote">${escapeHTML(display.brightnessHint)}</p></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== SECTION: DYNAMIC ISLAND ===== -->
+          <section class="island-section section-pad" id="island">
+            <div class="content-width">
+              <div class="reveal"><p class="eyebrow">${escapeHTML(island.eyebrow)}</p><h2 class="section-title">${escapeHTML(island.title)}</h2><p class="section-copy">${escapeHTML(island.copy)}</p></div>
+              <div class="island-playground reveal"><div class="island-demo" id="island-demo" aria-live="polite"></div><button class="quiet-button island-next" id="island-next" type="button">${escapeHTML(island.button)} <span aria-hidden="true">↻</span></button></div>
+            </div>
+          </section>
+
+          <!-- ===== SECTION: CHIP AND BATTERY ===== -->
+          <section class="chip-section section-pad" id="chip">
+            <div class="content-width">
+              <div class="reveal"><p class="eyebrow">${escapeHTML(chip.eyebrow)}</p><h2 class="section-title gradient-text">${escapeHTML(chip.title)}</h2><p class="section-copy">${escapeHTML(chip.copy)}</p></div>
+              <div class="chip-layout">
+                <div class="chip-visual reveal" aria-label="${escapeHTML(CONTENT.accessibility.chipIllustration)}">
+                  <svg class="chip-svg chip-chip" viewBox="0 0 460 390" role="img" aria-label="${escapeHTML(CONTENT.accessibility.chipIllustration)}">
+                    <defs><linearGradient id="chipMetal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d9e7ff"/><stop offset=".34" stop-color="#6685b1"/><stop offset=".72" stop-color="#202d43"/><stop offset="1" stop-color="#a6c7f4"/></linearGradient><radialGradient id="chipCore"><stop stop-color="#b8d9ff" stop-opacity=".8"/><stop offset=".5" stop-color="#4775b5" stop-opacity=".4"/><stop offset="1" stop-color="#101a2a" stop-opacity=".1"/></radialGradient></defs>
+                    <g fill="none" stroke="#7198cc" stroke-opacity=".5" stroke-width="2">${Array.from({ length: 9 }, (_, i) => `<path d="M${70 + i * 40} 28 V90 M${70 + i * 40} 300 V362"/>`).join("")}${Array.from({ length: 7 }, (_, i) => `<path d="M30 ${105 + i * 30} H92 M368 ${105 + i * 30} H430"/>`).join("")}</g>
+                    <g transform="translate(94 65)"><rect x="0" y="0" width="272" height="260" rx="34" fill="#0c1421" stroke="url(#chipMetal)" stroke-width="5"/><rect x="21" y="21" width="230" height="218" rx="23" fill="url(#chipCore)" stroke="#94b7e9" stroke-opacity=".55"/><path d="M49 61 H223 M49 199 H223 M62 49 V211 M210 49 V211" stroke="#9dc0f0" stroke-opacity=".4" stroke-width="1.5"/><circle cx="136" cy="130" r="69" fill="url(#chipCore)" stroke="#bed8fa" stroke-opacity=".6"/><circle cx="136" cy="130" r="43" fill="none" stroke="#d5e7ff" stroke-opacity=".55"/><text x="136" y="127" text-anchor="middle" fill="#e9f2ff" font-size="33" font-weight="700" letter-spacing="-2">${escapeHTML(CONTENT.ui.chipDiagramPrimary)}</text><text x="136" y="151" text-anchor="middle" fill="#c6d9f4" font-size="11" letter-spacing="4">${escapeHTML(CONTENT.ui.chipDiagramSecondary)}</text></g>
+                    <circle cx="230" cy="195" r="168" fill="none" stroke="#80a9e5" stroke-opacity=".15" stroke-dasharray="3 9"/>
+                  </svg>
+                </div>
+                <div class="chip-copy reveal">
+                  <h3>${escapeHTML(chip.title)}</h3><p>${escapeHTML(chip.copy)}</p>
+                  <div class="chip-stats">${chip.stats.map((stat) => `<div class="chip-stat"><strong data-count-to="${escapeHTML(stat.countTo)}" data-count-prefix="${escapeHTML(stat.prefix)}" data-count-suffix="${escapeHTML(stat.suffix)}" data-count-final="${escapeHTML(stat.value)}">${escapeHTML(stat.value)}</strong><span>${escapeHTML(stat.label)}</span></div>`).join("")}</div>
+                  <div class="performance"><div class="performance-head"><span>${escapeHTML(chip.performanceLabel)}</span><span>${escapeHTML(chip.performanceNote)}</span></div><div class="performance-track"><div class="performance-fill" id="performance-fill"></div></div></div>
+                  <div class="battery-block">
+                    <svg class="battery-ring" viewBox="0 0 100 100" role="img" aria-label="${escapeHTML(CONTENT.accessibility.batteryRing)}"><circle class="ring-base" cx="50" cy="50" r="40"/><circle class="ring-progress" cx="50" cy="50" r="40"/></svg>
+                    <div class="battery-copy"><strong>${escapeHTML(chip.batteryTitle)}</strong><span>${escapeHTML(chip.batteryCopy)}</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== SECTION: BUY ===== -->
+          <section class="buy-section section-pad" id="buy">
+            <div class="content-width">
+              <div class="reveal"><p class="eyebrow">${escapeHTML(buy.eyebrow)}</p><h2 class="section-title">${escapeHTML(buy.title)}</h2><p class="section-copy">${escapeHTML(buy.copy)}</p></div>
+              <div class="buy-layout">
+                <div class="buy-options">
+                  <span class="option-label">${escapeHTML(buy.storageLabel)}</span>
+                  <div class="storage-grid" role="group" aria-label="${escapeHTML(CONTENT.accessibility.storageLabel)}">${CONTENT.storage.map((storage, index) => `<button class="storage-card" type="button" data-storage-index="${index}" aria-pressed="${index === 0}"><strong>${escapeHTML(storage.size)}</strong><span>${escapeHTML(storage.price)} · ${escapeHTML(storage.note)}</span></button>`).join("")}</div>
+                  <span class="option-label" style="margin-top:2rem">${escapeHTML(buy.colorLabel)} · <span id="buy-color-name">${escapeHTML(selectedColor.name)}</span></span>
+                  <div class="buy-colors" role="group" aria-label="${escapeHTML(CONTENT.accessibility.colorLabel)}">${CONTENT.colorsList.map((color, index) => `<button class="buy-color" type="button" data-buy-color="${index}" aria-label="${escapeHTML(color.name)}" aria-pressed="${index === 0}"><span style="background:${escapeHTML(color.hex)}"></span></button>`).join("")}</div>
+                  <p class="microcopy">${escapeHTML(buy.priceNote)}</p>
+                </div>
+                <aside class="buy-summary" aria-label="${escapeHTML(CONTENT.accessibility.selectedConfiguration)}">
+                  <div class="buy-preview" id="buy-preview">${phoneMarkup({ className: "buy-phone", front: "heroPhone", back: "backPhone", color: selectedColor.hex })}</div>
+                  <p class="buy-selected-name" id="buy-selected-name">${escapeHTML(buy.previewLabel)} · ${escapeHTML(selectedColor.name)} · ${escapeHTML(selectedStorage.size)}</p>
+                  <div class="price-line"><span>${escapeHTML(buy.priceLabel)}</span><strong id="buy-price">${escapeHTML(selectedStorage.price)}</strong></div>
+                  <a class="primary-button buy-cta" href="${escapeHTML(buy.ctaHref)}">${escapeHTML(buy.cta)} <span aria-hidden="true">↗</span></a>
+                </aside>
+              </div>
+              <div class="specs" id="specs"><h3>${escapeHTML(buy.specsTitle)}</h3>${CONTENT.specs.map((spec) => `<details class="spec-row"><summary>${escapeHTML(spec.title)}</summary><p>${escapeHTML(spec.body)}</p></details>`).join("")}</div>
+            </div>
+          </section>
+        </main>
+
+        <!-- ===== SECTION: FOOTER ===== -->
+        <footer class="site-footer">
+          <div class="content-width">
+            <div class="footer-top"><div><div class="footer-brand">${escapeHTML(CONTENT.footer.brand)}</div><p class="footer-note">${escapeHTML(CONTENT.footer.note)}</p></div><p class="footer-note">${escapeHTML(CONTENT.footer.disclaimer)}</p></div>
+            <div class="credits" id="image-credits"><strong>${escapeHTML(CONTENT.footer.creditsLabel)}:</strong> ${escapeHTML(CONTENT.footer.noCredits)}</div>
+            <div class="footer-bottom"><span>© ${new Date().getFullYear()} · ${escapeHTML(CONTENT.ui.footerTag)}</span><span class="edit-hint">${escapeHTML(CONTENT.footer.editorHint)}</span></div>
+          </div>
+        </footer>`;
+
+      renderImageEditor();
+      activateImages();
+      renderIsland();
+      updateSelectedConfiguration();
+      setupInteractions();
+      setupObservers();
+      updateCredits();
+    }
+
+    /* ===== IMAGE LOADING + FALLBACKS ===== */
+    function warnImage(slot, reason) {
+      const key = `${slot}:${reason}`;
+      if (imageWarnings.has(key)) return;
+      imageWarnings.add(key);
+      console.warn(`[Image slot: ${slot}] ${reason}. Using the built-in fallback.`);
+    }
+
+    function applyImageSlot(slot) {
+      const item = CONTENT.IMAGES[slot];
+      if (!item) return;
+      const url = safeImageURL(item.url);
+      $$(`[data-image-slot="${slot}"]`).forEach((shell) => {
+        const img = $("img", shell);
+        shell.classList.remove("is-loaded", "is-pending", "is-empty", "is-error");
+        if (!url) {
+          img.removeAttribute("src");
+          shell.classList.add("is-empty");
+          warnImage(slot, item.url ? "URL must begin with http:// or https://" : "URL is empty");
+          return;
+        }
+        shell.classList.add("is-pending");
+        img.alt = item.alt;
+        img.onload = () => { shell.classList.remove("is-pending", "is-error"); shell.classList.add("is-loaded"); };
+        img.onerror = () => { shell.classList.remove("is-pending", "is-loaded"); shell.classList.add("is-error"); warnImage(slot, "image failed to load"); };
+        img.src = url;
+      });
+    }
+
+    function activateImages() {
+      Object.keys(CONTENT.IMAGES).forEach(applyImageSlot);
+    }
+
+    function updateCredits() {
+      const entries = Object.entries(CONTENT.IMAGES).filter(([, item]) => item.credit && item.credit.trim());
+      const line = entries.length ? entries.map(([slot, item]) => `${slot}: ${item.credit}`).join(" · ") : CONTENT.footer.noCredits;
+      $("#image-credits").innerHTML = `<strong>${escapeHTML(CONTENT.footer.creditsLabel)}:</strong> ${escapeHTML(line)}`;
+    }
+
+    /* ===== IMAGE EDITOR: E KEY ===== */
+    function renderImageEditor() {
+      const panel = $("#image-editor");
+      panel.innerHTML = `<div class="editor-head"><h2>${escapeHTML(CONTENT.ui.editorTitle)}</h2><button class="editor-close" id="editor-close" type="button" aria-label="${escapeHTML(CONTENT.ui.editorClose)}">×</button></div>
+        <p class="editor-help">${escapeHTML(CONTENT.ui.editorHelp)}</p>
+        <div class="editor-list">${Object.entries(CONTENT.IMAGES).map(([slot, item]) => `<div class="editor-field"><label for="image-url-${escapeHTML(slot)}">${escapeHTML(slot)} · ${escapeHTML(item.alt)}</label><input id="image-url-${escapeHTML(slot)}" data-edit-image="${escapeHTML(slot)}" type="url" inputmode="url" placeholder="${escapeHTML(CONTENT.ui.editorPlaceholder)}" value="${escapeHTML(item.url)}"></div>`).join("")}</div>
+        <div class="editor-actions"><button class="reset-button" id="editor-reset" type="button">${escapeHTML(CONTENT.ui.editorReset)}</button><button id="editor-close-bottom" type="button">${escapeHTML(CONTENT.ui.editorClose)}</button></div><p class="editor-status" id="editor-status" role="status"></p>`;
+      try {
+        const saved = localStorage.getItem("iphone18pro-image-urls");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          Object.entries(parsed).forEach(([slot, url]) => {
+            if (CONTENT.IMAGES[slot] && typeof url === "string") CONTENT.IMAGES[slot].url = url;
+          });
+        }
+      } catch (error) {
+        console.warn("Image editor: saved URLs could not be read from localStorage.", error);
+      }
+      Object.entries(CONTENT.IMAGES).forEach(([slot, item]) => {
+        const input = $(`[data-edit-image="${slot}"]`, panel);
+        if (input) input.value = item.url;
+      });
+      $("#editor-close", panel).addEventListener("click", closeImageEditor);
+      $("#editor-close-bottom", panel).addEventListener("click", closeImageEditor);
+      $("#editor-reset", panel).addEventListener("click", resetImageURLs);
+      $$('[data-edit-image]', panel).forEach((input) => {
+        input.addEventListener("input", () => {
+          const slot = input.dataset.editImage;
+          CONTENT.IMAGES[slot].url = input.value.trim();
+          applyImageSlot(slot);
+          saveImageURLs();
+          $("#editor-status", panel).textContent = `${slot} ${CONTENT.ui.editorUpdated}`;
+        });
+      });
+      activateImages();
+    }
+
+    function saveImageURLs() {
+      try {
+        const values = Object.fromEntries(Object.entries(CONTENT.IMAGES).map(([slot, item]) => [slot, item.url]));
+        localStorage.setItem("iphone18pro-image-urls", JSON.stringify(values));
+      } catch (error) {
+        console.warn("Image editor: changes could not be saved in localStorage.", error);
+        const status = $("#editor-status");
+        if (status) status.textContent = CONTENT.ui.editorStorageError;
+      }
+    }
+
+    function resetImageURLs() {
+      Object.entries(CONTENT.IMAGES).forEach(([slot, item]) => { item.url = DEFAULT_IMAGE_URLS[slot] || ""; });
+      try { localStorage.removeItem("iphone18pro-image-urls"); }
+      catch (error) { console.warn("Image editor: saved URLs could not be cleared.", error); }
+      $$('[data-edit-image]').forEach((input) => { input.value = DEFAULT_IMAGE_URLS[input.dataset.editImage] || ""; });
+      Object.keys(CONTENT.IMAGES).forEach(applyImageSlot);
+      $("#editor-status").textContent = CONTENT.ui.editorResetDone;
+      updateCredits();
+    }
+
+    function openImageEditor() {
+      const panel = $("#image-editor");
+      panel.classList.add("is-open");
+      panel.setAttribute("aria-hidden", "false");
+      $("#editor-close", panel).focus();
+    }
+
+    function closeImageEditor() {
+      const panel = $("#image-editor");
+      panel.classList.remove("is-open");
+      panel.setAttribute("aria-hidden", "true");
+    }
+
+    /* ===== COLOR + BUY CONFIGURATION ===== */
+    function setColor(index) {
+      const next = CONTENT.colorsList[index];
+      if (!next) return;
+      selectedColor = next;
+      $$("[data-color-index]").forEach((button) => button.setAttribute("aria-pressed", String(Number(button.dataset.colorIndex) === index)));
+      $$("[data-buy-color]").forEach((button) => button.setAttribute("aria-pressed", String(Number(button.dataset.buyColor) === index)));
+      $$(".device").forEach((device) => device.style.setProperty("--device-color", next.hex));
+      const colorPhone = $("#color-preview .device");
+      if (colorPhone) {
+        const overlay = $(".face-front .render-overlay .image-shell", colorPhone);
+        const nextSlot = next.frontImage && CONTENT.IMAGES[next.frontImage] ? next.frontImage : "";
+        if (overlay) {
+          const img = $("img", overlay);
+          overlay.classList.remove("is-loaded", "is-pending", "is-error");
+          if (!nextSlot) {
+            overlay.removeAttribute("data-image-slot");
+            img.removeAttribute("src");
+            overlay.classList.add("is-empty");
+          } else {
+            overlay.dataset.imageSlot = nextSlot;
+            const item = CONTENT.IMAGES[nextSlot];
+            img.alt = item.alt;
+            const url = safeImageURL(item.url);
+            if (url) {
+              overlay.classList.add("is-pending");
+              img.onload = () => { overlay.classList.remove("is-pending", "is-error"); overlay.classList.add("is-loaded"); };
+              img.onerror = () => { overlay.classList.remove("is-pending", "is-loaded"); overlay.classList.add("is-error"); warnImage(nextSlot, "image failed to load"); };
+              img.src = url;
+            } else {
+              img.removeAttribute("src");
+              overlay.classList.add("is-empty");
+              warnImage(nextSlot, "URL is empty");
+            }
+          }
+        }
+      }
+      $("#color-preview-label").textContent = `${CONTENT.colors.previewLabel} · ${next.name}`;
+      updateSelectedConfiguration();
+    }
+
+    function setStorage(index) {
+      const next = CONTENT.storage[index];
+      if (!next) return;
+      selectedStorage = next;
+      $$("[data-storage-index]").forEach((button) => button.setAttribute("aria-pressed", String(Number(button.dataset.storageIndex) === index)));
+      updateSelectedConfiguration();
+    }
+
+    function updateSelectedConfiguration() {
+      const colorName = $("#buy-color-name");
+      const selectedName = $("#buy-selected-name");
+      const price = $("#buy-price");
+      if (colorName) colorName.textContent = selectedColor.name;
+      if (selectedName) selectedName.textContent = `${CONTENT.buy.previewLabel} · ${selectedColor.name} · ${selectedStorage.size}`;
+      if (price) price.textContent = selectedStorage.price || CONTENT.buy.placeholderPrice;
+      $$("#buy-preview .device").forEach((device) => device.style.setProperty("--device-color", selectedColor.hex));
+    }
+
+    /* ===== CAMERA DEMOS ===== */
+    function updateAperture(value) {
+      const normalized = (Number(value) - CONTENT.camera.apertureMin) / (CONTENT.camera.apertureMax - CONTENT.camera.apertureMin);
+      const fStop = Number(value) / CONTENT.camera.apertureScale;
+      const opening = CONTENT.camera.apertureOpeningMin + normalized * (CONTENT.camera.apertureOpeningMax - CONTENT.camera.apertureOpeningMin);
+      const blur = Math.max(CONTENT.camera.blurMin, CONTENT.camera.blurMax - normalized * (CONTENT.camera.blurMax - CONTENT.camera.blurMin));
+      document.documentElement.style.setProperty("--aperture-opening", `${opening}%`);
+      document.documentElement.style.setProperty("--depth-blur", `${blur}px`);
+      $("#aperture-readout").innerHTML = `f/${fStop.toFixed(1)} <span>${escapeHTML(CONTENT.ui.apertureVariable)}</span>`;
+    }
+
+    function setSample(index) {
+      currentSample = index;
+      const sample = CONTENT.camera.samples[index];
+      const slot = sample ? sample.slot : "cameraSample1";
+      const target = $("#viewfinder-image");
+      target.innerHTML = imageMarkup(slot);
+      applyImageSlot(slot);
+      $$("[data-sample]").forEach((button) => button.setAttribute("aria-pressed", String(Number(button.dataset.sample) === index)));
+    }
+
+    function setZoom(zoom) {
+      currentZoom = zoom;
+      const scale = CONTENT.camera.zoomScales[zoom] || 1;
+      $("#viewfinder-image").style.setProperty("--zoom-level", scale);
+      $("#viewfinder-image").style.transform = `scale(${scale})`;
+      $("#zoom-readout").textContent = zoom;
+      $$("[data-zoom]").forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.zoom === zoom)));
+    }
+
+    /* ===== DYNAMIC ISLAND PLAYGROUND ===== */
+    function renderIsland() {
+      const state = CONTENT.island.states[islandIndex];
+      const island = $("#island-demo");
+      if (!island || !state) return;
+      island.classList.toggle("is-three", state.kind === "three");
+      if (state.kind === "three") {
+        const items = CONTENT.island.states.slice(0, 3);
+        island.innerHTML = `<div class="island-three-grid">${items.map((item, index) => `<div class="island-activity" style="animation-delay:${index * CONTENT.motion.islandStaggerMs}ms"><span class="activity-glyph" aria-hidden="true">${escapeHTML(item.icon)}</span><span class="activity-copy"><strong>${escapeHTML(item.title)}</strong><span>${escapeHTML(item.detail)}</span></span></div>`).join("")}</div>`;
+      } else {
+        island.innerHTML = `<div class="island-activity"><span class="activity-glyph" aria-hidden="true">${escapeHTML(state.icon)}</span><span class="activity-copy"><strong>${escapeHTML(state.title)}</strong><span>${escapeHTML(state.detail)}</span></span></div>`;
+      }
+    }
+
+    /* ===== INTERACTIONS ===== */
+    function setupInteractions() {
+      $$("[data-color-index]").forEach((button) => button.addEventListener("click", () => setColor(Number(button.dataset.colorIndex))));
+      $$("[data-buy-color]").forEach((button) => button.addEventListener("click", () => setColor(Number(button.dataset.buyColor))));
+      $$("[data-storage-index]").forEach((button) => button.addEventListener("click", () => setStorage(Number(button.dataset.storageIndex))));
+      $("#aperture-range").addEventListener("input", (event) => updateAperture(event.target.value));
+      $$("[data-zoom]").forEach((button) => button.addEventListener("click", () => setZoom(button.dataset.zoom)));
+      $$("[data-sample]").forEach((button) => button.addEventListener("click", () => setSample(Number(button.dataset.sample))));
+      $("#refresh-range").addEventListener("input", (event) => {
+        displayRate = Number(event.target.value);
+        $("#refresh-value").textContent = `${displayRate}${CONTENT.ui.refreshUnit}`;
+        document.documentElement.style.setProperty("--refresh-rate", displayRate);
+      });
+      $("#brightness-range").addEventListener("input", (event) => {
+        displayBrightness = Number(event.target.value);
+        $("#brightness-value").textContent = `${displayBrightness}${CONTENT.ui.brightnessUnit}`;
+        document.documentElement.style.setProperty("--brightness-glow", displayBrightness / 100);
+      });
+      $("#island-next").addEventListener("click", () => {
+        islandIndex = (islandIndex + 1) % CONTENT.island.states.length;
+        renderIsland();
+      });
+      const heroInteraction = $("#hero-phone-interaction");
+      const heroDevice = $(".hero-device", heroInteraction);
+      if (!reducedMotion && heroInteraction && heroDevice) {
+        const updateTilt = (event) => {
+          const bounds = heroInteraction.getBoundingClientRect();
+          const x = (event.clientX - bounds.left) / bounds.width;
+          const y = (event.clientY - bounds.top) / bounds.height;
+          const rotateY = (x - .5) * CONTENT.motion.heroTiltY + CONTENT.motion.heroBaseRotationY;
+          const rotateX = (.5 - y) * CONTENT.motion.heroTiltX + CONTENT.motion.heroBaseRotationX;
+          heroDevice.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          heroDevice.style.setProperty("--pointer-x", `${x * 100}%`);
+          heroDevice.style.setProperty("--pointer-y", `${y * 100}%`);
+        };
+        heroInteraction.addEventListener("pointermove", updateTilt);
+        heroInteraction.addEventListener("pointerleave", () => { heroDevice.style.transform = `rotateX(${CONTENT.motion.heroBaseRotationX + 1}deg) rotateY(${CONTENT.motion.heroBaseRotationY - 5}deg)`; heroDevice.style.setProperty("--pointer-x", "50%"); heroDevice.style.setProperty("--pointer-y", "50%"); });
+      }
+      document.addEventListener("keydown", (event) => {
+        const target = event.target;
+        const typing = target && (target.matches("input, textarea, select") || target.isContentEditable);
+        if (event.key.toLowerCase() === "e" && !typing && !event.ctrlKey && !event.metaKey && !event.altKey) {
+          event.preventDefault();
+          const panel = $("#image-editor");
+          panel.classList.contains("is-open") ? closeImageEditor() : openImageEditor();
+        }
+        if (event.key === "Escape") closeImageEditor();
+      });
+      updateAperture($("#aperture-range").value);
+      setZoom(CONTENT.ui.initialZoom);
+      setSample(0);
+    }
+
+    /* ===== SCROLL / REVEAL / PARALLAX ===== */
+    function setupObservers() {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12 });
+      $$(".reveal").forEach((element) => revealObserver.observe(element));
+
+      const navObserver = new IntersectionObserver((entries) => {
+        const heroIsVisible = entries.some((entry) => entry.isIntersecting);
+        $("#nav-buy").classList.toggle("is-visible", !heroIsVisible);
+      }, { threshold: .08 });
+      navObserver.observe($("#overview"));
+
+      const chipObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          document.documentElement.style.setProperty("--performance-fill", `${CONTENT.motion.performanceFill}%`);
+          document.documentElement.style.setProperty("--battery-fill", "1");
+          animateChipCounters();
+          chipObserver.unobserve(entry.target);
+        });
+      }, { threshold: .25 });
+      chipObserver.observe($("#chip"));
+
+      const displayObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          displayVisible = entry.isIntersecting;
+          if (displayVisible && !reducedMotion && !displayFrame) {
+            displayStart = 0;
+            displayFrame = requestAnimationFrame(animateDisplay);
+          }
+          if (!displayVisible && displayFrame) {
+            cancelAnimationFrame(displayFrame);
+            displayFrame = 0;
+          }
+        });
+      }, { threshold: .08 });
+      displayObserver.observe($("#display-demo"));
+
+      window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+      window.addEventListener("resize", requestScrollUpdate, { passive: true });
+      requestScrollUpdate();
+    }
+
+    function requestScrollUpdate() {
+      if (scrollFrame) return;
+      scrollFrame = requestAnimationFrame(updateScrollLinkedElements);
+    }
+
+    function updateScrollLinkedElements() {
+      scrollFrame = 0;
+      const story = $("#story");
+      const rect = story.getBoundingClientRect();
+      const scrollable = Math.max(1, story.offsetHeight - window.innerHeight);
+      storyProgress = Math.min(1, Math.max(0, -rect.top / scrollable));
+      const activeIndex = Math.min(CONTENT.story.panels.length - 1, Math.floor(storyProgress * CONTENT.story.panels.length));
+      $$("[data-story-panel]").forEach((panel, index) => panel.classList.toggle("is-active", index === activeIndex));
+      $$("[data-story-bg]").forEach((panel, index) => panel.classList.toggle("is-active", index === activeIndex));
+      $$("[data-story-step]").forEach((step, index) => step.classList.toggle("is-active", index === activeIndex));
+      const storyPhone = $(".story-phone");
+      if (storyPhone) {
+        const rotation = reducedMotion ? 0 : storyProgress * CONTENT.motion.storyRotation;
+        const scale = 1 - storyProgress * CONTENT.motion.storyScaleChange;
+        storyPhone.style.transform = `rotateY(${rotation}deg) scale(${scale})`;
+      }
+      if (!reducedMotion) {
+        $$(".story-backdrop .image-shell").forEach((layer, index) => {
+          const offset = (storyProgress - index / CONTENT.story.panels.length) * CONTENT.motion.storyParallax;
+          layer.style.transform = `translate3d(0,${offset}px,0) scale(1.04)`;
+        });
+      }
+    }
+
+    function animateChipCounters() {
+      const counters = $$("[data-count-to]");
+      if (reducedMotion) {
+        counters.forEach((counter) => { counter.textContent = counter.dataset.countFinal; });
+        return;
+      }
+      const duration = CONTENT.motion.counterDurationMs;
+      const started = performance.now();
+      const tick = (now) => {
+        const progress = Math.min(1, (now - started) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        counters.forEach((counter) => {
+          const target = Number(counter.dataset.countTo);
+          const value = Math.round(target * eased);
+          counter.textContent = `${counter.dataset.countPrefix}${value}${counter.dataset.countSuffix}`;
+        });
+        if (progress < 1) requestAnimationFrame(tick);
+        else counters.forEach((counter) => { counter.textContent = counter.dataset.countFinal; });
+      };
+      requestAnimationFrame(tick);
+    }
+
+    function animateDisplay(timestamp) {
+      if (!displayVisible || reducedMotion) { displayFrame = 0; return; }
+      if (!displayStart) displayStart = timestamp;
+      const elapsed = (timestamp - displayStart) / 1000;
+      const cycleSeconds = CONTENT.motion.displayCycleSeconds;
+      const rawProgress = (elapsed % cycleSeconds) / cycleSeconds;
+      const stepsPerCycle = Math.max(1, displayRate * cycleSeconds);
+      const steppedProgress = Math.floor(rawProgress * stepsPerCycle) / stepsPerCycle;
+      const dot = $("#motion-dot");
+      const track = dot.parentElement;
+      const distance = Math.max(0, track.clientWidth - dot.offsetWidth);
+      const x = steppedProgress * distance;
+      dot.style.transform = `translate3d(${x}px,-50%,0)`;
+      displayFrame = requestAnimationFrame(animateDisplay);
+    }
+
+    /* ===== STARTUP ===== */
+    renderPage();
+  </script>
+</body>
+</html>
